@@ -12122,6 +12122,13 @@
 /obj/machinery/atmospherics/portable/canister/air,
 /turf/simulated/floor/plating,
 /area/station/maintenance/fsmaint)
+"aQK" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/power/grounding_rod,
+/turf/simulated/floor/engine,
+/area/station/engineering/control)
 "aQL" = (
 /obj/structure/girder,
 /turf/simulated/floor/plating,
@@ -41457,6 +41464,9 @@
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "cTE" = (
@@ -41481,6 +41491,12 @@
 /obj/structure/window/plasmareinforced,
 /obj/structure/railing{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -41963,6 +41979,12 @@
 /obj/structure/railing/corner{
 	dir = 8
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "cVD" = (
@@ -42070,6 +42092,7 @@
 	icon_state = "0-4"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "cVT" = (
@@ -44193,6 +44216,9 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/visible,
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/control)
 "deD" = (
@@ -45350,6 +45376,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/power/grounding_rod,
 /turf/simulated/floor/plating,
 /area/station/engineering/engine/supermatter)
 "djr" = (
@@ -50195,6 +50222,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/grounding_rod,
 /turf/simulated/floor/plating,
 /area/station/engineering/engine/supermatter)
 "eDB" = (
@@ -55565,6 +55593,16 @@
 /obj/effect/spawner/random/fungus/probably,
 /turf/simulated/wall,
 /area/station/maintenance/disposal)
+"hph" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
+/obj/machinery/power/grounding_rod,
+/turf/simulated/floor/engine,
+/area/station/engineering/control)
 "hpI" = (
 /obj/machinery/door/airlock/medical{
 	name = "Operating Theatre Storage"
@@ -57029,6 +57067,7 @@
 /area/station/maintenance/apmaint)
 "ieI" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "ieP" = (
@@ -57446,6 +57485,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -58370,6 +58412,12 @@
 	},
 /obj/structure/railing/corner{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -60456,6 +60504,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -63345,6 +63396,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -66693,6 +66747,12 @@
 	dir = 4
 	},
 /obj/structure/railing,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "nin" = (
@@ -67972,6 +68032,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/visible,
 /turf/simulated/floor/engine,
 /area/station/engineering/control)
 "nSu" = (
@@ -72052,6 +72113,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 10
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "pTs" = (
@@ -73552,6 +73616,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/machinery/power/grounding_rod,
 /turf/simulated/floor/plating,
 /area/station/engineering/engine/supermatter)
 "qCH" = (
@@ -81409,6 +81474,9 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/supply{
 	dir = 1
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "uTy" = (
@@ -81936,6 +82004,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 6
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "vhf" = (
@@ -82074,6 +82145,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/grounding_rod,
 /turf/simulated/floor/plating,
 /area/station/engineering/engine/supermatter)
 "vmN" = (
@@ -83825,6 +83897,12 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "wja" = (
@@ -84727,6 +84805,9 @@
 	},
 /obj/structure/railing{
 	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -86177,6 +86258,12 @@
 	dir = 8
 	},
 /obj/structure/railing/corner,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "xvs" = (
@@ -115516,9 +115603,9 @@ cRb
 cSM
 qRu
 cRb
-cSM
+hph
 cRb
-cRb
+aQK
 cRb
 rjm
 fTc
@@ -118600,9 +118687,9 @@ gRE
 cRb
 cRb
 cRb
-cSM
+hph
 cRb
-cRb
+aQK
 cSM
 cRb
 giQ
