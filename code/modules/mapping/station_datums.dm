@@ -39,3 +39,10 @@
 	technical_name = "test_tiny"
 	map_path = "_maps/map_files/test_tiny/test_tiny.dmm"
 	voteable = FALSE
+
+/datum/map/boxstation_SM
+	fluff_name = "NSS Cyberiad Supermatter Edition"
+	technical_name = "Supermatter BoxStation"
+	map_path = "_maps/map_files/stations/boxstation_SM.dmm"
+	webmap_url = "https://webmap.affectedarc07.co.uk/maps/paradise/cyberiad/"
+	welcome_sound = 'sound/AI/welcome_cyberiad.ogg'
