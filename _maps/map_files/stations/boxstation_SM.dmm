@@ -57035,6 +57035,9 @@
 /obj/machinery/power/rad_collector{
 	anchored = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/control)
 "iek" = (
@@ -64770,6 +64773,10 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/binary/volume_pump/on{
+	dir = 8;
+	name = "Air To Distro"
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/control)
 "mdt" = (
@@ -65797,6 +65804,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/asmaint2)
+"mGh" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/unary/portables_connector{
+	dir = 8
+	},
+/turf/simulated/floor/engine,
+/area/station/engineering/control)
 "mGG" = (
 /obj/structure/window/reinforced,
 /obj/structure/grille,
@@ -117654,7 +117670,7 @@ rYV
 obR
 mZX
 mXy
-cSx
+mGh
 cVy
 cSI
 cSI
