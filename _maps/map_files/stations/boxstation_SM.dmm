@@ -86838,6 +86838,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/command/bridge)
+"xte" = (
+/obj/structure/holosign/barrier/atmos,
+/turf/simulated/floor/plating,
+/area/space)
 "xty" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -109847,7 +109851,7 @@ wSD
 dqs
 xsN
 nRP
-exU
+xte
 nZI
 nZI
 nZI
