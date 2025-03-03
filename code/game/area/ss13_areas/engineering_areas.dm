@@ -161,3 +161,7 @@
 	name = "Technical Storage"
 	icon_state = "techstorage"
 	request_console_name = "Tech Storage"
+
+/area/station/engineering/singularity_control
+	name = "Singularity Control Room"
+	icon_state = "engi"

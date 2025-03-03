@@ -33,6 +33,17 @@
 	/// The current time count for clearing old data from the lists
 	var/rad_time_counter = 0
 
+/obj/machinery/power/rad_collector/prefilled
+	anchored = TRUE
+	active = TRUE
+
+/obj/machinery/power/rad_collector/prefilled/Initialize(mapload)
+	. = ..()
+	loaded_tank = new /obj/item/tank/internals/plasma/full()
+	icon_state = "ca_on"
+	flick("ca_active", src)
+	update_icons()
+
 /obj/machinery/power/rad_collector/process()
 	if(!loaded_tank)
 		return
