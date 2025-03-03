@@ -1221,7 +1221,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
@@ -1369,7 +1370,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	dir = 9;
@@ -1574,7 +1576,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel,
 /area/station/security/storage)
@@ -2841,10 +2844,11 @@
 	},
 /area/station/security/evidence)
 "alW" = (
-/obj/structure/sign/radiation/rad_area{
-	pixel_y = -32
+/obj/machinery/computer/general_air_control/large_tank_control{
+	dir = 8;
+	inlet_injector_autolink_id = 79;
+	name = "air sensor monitor N2"
 	},
-/obj/machinery/atmospherics/unary/thermomachine,
 /turf/simulated/floor/plasteel,
 /area/station/engineering/hardsuitstorage)
 "alX" = (
@@ -5483,7 +5487,8 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	dir = 4;
@@ -6608,7 +6613,8 @@
 "ayn" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /obj/machinery/door_timer/cell_5{
 	pixel_x = 32
@@ -11196,7 +11202,8 @@
 /area/station/maintenance/electrical)
 "aNs" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
@@ -11371,7 +11378,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	dir = 4;
@@ -12126,7 +12134,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/power/grounding_rod,
+/obj/machinery/power/grounding_rod{
+	anchored = 1
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/control)
 "aQL" = (
@@ -14276,7 +14286,8 @@
 /area/shuttle/arrival/station)
 "aXo" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	icon_state = "cult"
@@ -16439,7 +16450,8 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
@@ -17711,7 +17723,8 @@
 /area/station/service/kitchen)
 "bhX" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	icon_state = "showroomfloor"
@@ -18708,7 +18721,8 @@
 /area/station/service/bar)
 "bkQ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/wood,
 /area/station/service/library)
@@ -20495,7 +20509,8 @@
 	pixel_x = 12
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	dir = 6;
@@ -21687,7 +21702,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	icon_state = "cafeteria"
@@ -22222,7 +22238,8 @@
 /area/station/security/detective)
 "bvL" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel,
 /area/station/hallway/primary/central/ne)
@@ -24262,7 +24279,8 @@
 /area/station/supply/warehouse)
 "bEC" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel,
 /area/station/supply/warehouse)
@@ -25724,7 +25742,8 @@
 /area/station/science/lobby)
 "bKj" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	dir = 6;
@@ -26803,7 +26822,8 @@
 /area/station/medical/reception)
 "bOF" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	dir = 8;
@@ -27559,7 +27579,8 @@
 	network = list("Research","SS13")
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	dir = 4;
@@ -28601,7 +28622,8 @@
 	pixel_x = 32
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel,
 /area/station/hallway/primary/central/se)
@@ -29791,7 +29813,8 @@
 /area/station/medical/cloning)
 "caN" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /obj/machinery/clonepod,
 /turf/simulated/floor/plasteel{
@@ -30926,7 +30949,8 @@
 /area/station/hallway/primary/central/sw)
 "cfr" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/carpet,
 /area/station/medical/psych)
@@ -31263,7 +31287,8 @@
 "cgq" = (
 /obj/machinery/alarm/directional/east,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plasteel{
@@ -31424,7 +31449,8 @@
 /area/station/medical/cryo)
 "chm" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	icon_state = "freezerfloor"
@@ -32029,7 +32055,8 @@
 	pixel_x = 12
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	icon_state = "white"
@@ -32077,7 +32104,8 @@
 "cjV" = (
 /obj/machinery/atmospherics/portable/canister/sleeping_agent,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel,
 /area/station/science/storage)
@@ -32223,7 +32251,8 @@
 "ckG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /obj/effect/landmark/start/explorer,
 /turf/simulated/floor/plasteel,
@@ -33488,7 +33517,8 @@
 /area/station/medical/storage)
 "cpU" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	dir = 4;
@@ -33974,7 +34004,8 @@
 /area/station/hallway/primary/aft/north)
 "crV" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	icon_state = "yellowcorner"
@@ -35368,7 +35399,8 @@
 /area/station/engineering/controlroom)
 "cxr" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -36966,6 +36998,15 @@
 	icon_state = "dark"
 	},
 /area/station/public/construction)
+"cCM" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
+/turf/simulated/floor/engine,
+/area/station/engineering/engine/supermatter)
 "cCO" = (
 /obj/structure/table,
 /obj/item/stack/cable_coil{
@@ -38190,7 +38231,8 @@
 /area/station/engineering/break_room)
 "cHo" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -40374,7 +40416,8 @@
 /area/station/engineering/atmos)
 "cPT" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel,
 /area/station/engineering/atmos)
@@ -40778,9 +40821,6 @@
 /turf/simulated/floor/plating,
 /area/station/engineering/hardsuitstorage)
 "cRp" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 6
-	},
 /obj/item/wrench,
 /obj/effect/turf_decal/delivery,
 /turf/simulated/floor/plasteel{
@@ -41452,21 +41492,13 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/aft)
 "cTD" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 5
-	},
-/obj/structure/window/plasmareinforced{
-	dir = 8
-	},
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 1
 	},
+/obj/effect/spawner/window/plastitanium,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "cTE" = (
@@ -41476,27 +41508,33 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	dir = 4
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/manifold4w/visible,
 /turf/simulated/floor/engine,
 /area/station/engineering/control)
 "cTF" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 5
-	},
-/obj/structure/window/plasmareinforced,
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging,
+/obj/machinery/atmospherics/unary/outlet_injector{
+	dir = 4;
+	autolink_id = 69;
+	name = "air injector CO2"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/unary/outlet_injector{
+	dir = 8;
+	autolink_id = 79;
+	name = "air injector N2"
+	},
+/obj/structure/window/plastitanium{
+	dir = 8
+	},
+/obj/structure/window/plastitanium{
+	dir = 4
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -41964,27 +42002,10 @@
 /turf/simulated/floor/engine,
 /area/station/engineering/control)
 "cVB" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 10
-	},
-/obj/structure/window/plasmareinforced{
-	dir = 1
-	},
-/obj/structure/window/plasmareinforced{
-	dir = 4
-	},
 /obj/structure/railing/corner{
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
+/obj/effect/spawner/window/plastitanium,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "cVD" = (
@@ -42084,7 +42105,6 @@
 /turf/simulated/floor/plating,
 /area/station/engineering/atmos/distribution)
 "cVS" = (
-/obj/machinery/alarm/engine/directional/west,
 /obj/machinery/power/apc/critical/directional/north{
 	shock_proof = 1
 	},
@@ -42099,12 +42119,19 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
-/obj/structure/window/plasmareinforced{
-	dir = 1
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
-/obj/machinery/power/rad_collector{
-	anchored = 1
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/engineering/glass{
+	heat_proof = 1;
+	name = "Supermatter Chamber"
+	},
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/atmos,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "cVV" = (
@@ -42461,7 +42488,8 @@
 	},
 /obj/machinery/computer/general_air_control/large_tank_control{
 	dir = 8;
-	inlet_injector_autolink_id = 69
+	inlet_injector_autolink_id = 69;
+	name = "air sensor monitor CO2"
 	},
 /turf/simulated/floor/plasteel,
 /area/station/engineering/hardsuitstorage)
@@ -42526,7 +42554,6 @@
 /turf/simulated/floor/plasteel,
 /area/station/engineering/atmos)
 "cXP" = (
-/obj/machinery/atmospherics/portable/canister/toxins,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -43123,6 +43150,13 @@
 	},
 /turf/simulated/floor/plasteel,
 /area/station/engineering/atmos)
+"dam" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/portable/canister/toxins,
+/turf/simulated/floor/engine,
+/area/station/engineering/control)
 "dap" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -44418,10 +44452,6 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/solar_maintenance/aft_starboard)
 "dfo" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/meter,
 /obj/effect/turf_decal/delivery,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
@@ -44443,8 +44473,7 @@
 /area/station/engineering/engine/supermatter)
 "dfs" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
-/obj/structure/dispenser,
-/turf/simulated/floor/engine,
+/turf/simulated/wall/r_wall,
 /area/station/engineering/engine/supermatter)
 "dft" = (
 /obj/structure/cable/yellow{
@@ -45376,7 +45405,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/power/grounding_rod,
+/obj/machinery/power/grounding_rod{
+	anchored = 1
+	},
 /turf/simulated/floor/plating,
 /area/station/engineering/engine/supermatter)
 "djr" = (
@@ -45473,7 +45504,8 @@
 /area/station/turret_protected/aisat/interior)
 "djH" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/carpet/grimey,
 /area/station/turret_protected/aisat/interior)
@@ -45764,7 +45796,8 @@
 	req_access = list(75)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	dir = 4;
@@ -46508,7 +46541,8 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plating,
 /area/station/turret_protected/aisat/interior)
@@ -48320,7 +48354,8 @@
 "dJf" = (
 /obj/machinery/firealarm/directional/east,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/bluegrid,
 /area/station/command/server)
@@ -49213,7 +49248,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/carpet/arcade,
 /area/station/public/arcade)
@@ -49364,9 +49400,14 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 9
 	},
-/obj/structure/window/plasmareinforced,
 /obj/machinery/power/rad_collector{
 	anchored = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -50048,7 +50089,8 @@
 /area/station/maintenance/aft)
 "exw" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plasteel{
@@ -50222,7 +50264,9 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/grounding_rod,
+/obj/machinery/power/grounding_rod{
+	anchored = 1
+	},
 /turf/simulated/floor/plating,
 /area/station/engineering/engine/supermatter)
 "eDB" = (
@@ -51371,6 +51415,12 @@
 	},
 /obj/machinery/power/rad_collector{
 	anchored = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -54631,6 +54681,21 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/grass,
 /area/station/maintenance/asmaint)
+"gPf" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
+/obj/machinery/power/rad_collector{
+	anchored = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/engine,
+/area/station/engineering/engine/supermatter)
 "gPu" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -55379,6 +55444,10 @@
 	icon_state = "white"
 	},
 /area/station/science/toxins/mixing)
+"hhn" = (
+/obj/structure/dispenser,
+/turf/simulated/floor/engine,
+/area/station/engineering/engine/supermatter)
 "hhF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -55600,7 +55669,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
-/obj/machinery/power/grounding_rod,
+/obj/machinery/power/grounding_rod{
+	anchored = 1
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/control)
 "hpI" = (
@@ -56555,13 +56626,6 @@
 /turf/simulated/floor/plasteel,
 /area/station/science/xenobiology)
 "hON" = (
-/obj/machinery/door/airlock/engineering/glass{
-	autoclose = 0;
-	id_tag = "engsm_door_ext";
-	locked = 1;
-	name = "Supermatter Exterior Access"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable{
@@ -57071,6 +57135,7 @@
 "ieI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/visible,
+/obj/machinery/alarm/engine/directional/north,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "ieP" = (
@@ -57218,7 +57283,8 @@
 /area/station/public/storage/tools)
 "iib" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /obj/machinery/requests_console/directional/east,
 /turf/simulated/floor/wood,
@@ -57477,9 +57543,6 @@
 /turf/simulated/floor/engine/xenobio,
 /area/station/science/xenobiology)
 "ioM" = (
-/obj/structure/window/plasmareinforced{
-	dir = 8
-	},
 /obj/machinery/power/rad_collector{
 	anchored = 1
 	},
@@ -57877,6 +57940,15 @@
 /obj/machinery/power/rad_collector{
 	anchored = 1
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "iBI" = (
@@ -58012,7 +58084,8 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plating,
 /area/station/public/storage/emergency/port)
@@ -58405,23 +58478,13 @@
 /turf/simulated/floor/carpet/arcade,
 /area/station/public/arcade)
 "iRc" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/structure/window/plasmareinforced,
-/obj/structure/window/plasmareinforced{
-	dir = 8
-	},
 /obj/structure/railing/corner{
 	dir = 4
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
 	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
+/obj/effect/spawner/window/plastitanium,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "iRr" = (
@@ -60496,9 +60559,6 @@
 /turf/simulated/floor/plasteel,
 /area/station/maintenance/apmaint2)
 "jUZ" = (
-/obj/structure/window/plasmareinforced{
-	dir = 4
-	},
 /obj/machinery/power/rad_collector{
 	anchored = 1
 	},
@@ -61299,7 +61359,8 @@
 /area/station/maintenance/asmaint)
 "krd" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel,
 /area/station/hallway/primary/aft/south)
@@ -62182,7 +62243,7 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
+	dir = 4
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/control)
@@ -62551,9 +62612,14 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 5
 	},
-/obj/structure/window/plasmareinforced,
 /obj/machinery/power/rad_collector{
 	anchored = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -63388,12 +63454,6 @@
 /turf/simulated/floor/plasteel,
 /area/station/hallway/primary/central/se)
 "lrJ" = (
-/obj/structure/window/plasmareinforced{
-	dir = 4
-	},
-/obj/machinery/power/rad_collector{
-	anchored = 1
-	},
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
 	dir = 8
 	},
@@ -63402,6 +63462,12 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
+/obj/machinery/power/rad_collector{
+	anchored = 1
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -64945,6 +65011,12 @@
 	},
 /obj/machinery/power/rad_collector{
 	anchored = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -66508,10 +66580,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/green{
-	dir = 6
-	},
 /obj/effect/turf_decal/stripes/corner,
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6;
+	level = 1
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/control)
 "mZf" = (
@@ -66672,7 +66745,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel,
 /area/station/security/permabrig)
@@ -66758,17 +66832,9 @@
 /turf/simulated/floor/plating,
 /area/station/command/office/rd)
 "nic" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging,
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4
-	},
 /obj/structure/railing,
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction,
+/obj/effect/spawner/window/plastitanium,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "nin" = (
@@ -67559,6 +67625,9 @@
 	pixel_x = 23
 	},
 /obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
 	},
@@ -67907,7 +67976,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /mob/living/simple_animal/pet/cat/runtime,
 /turf/simulated/floor/plasteel{
@@ -68896,9 +68966,6 @@
 	icon_state = "neutralfull"
 	},
 /area/station/hallway/secondary/exit)
-"omz" = (
-/turf/simulated/wall/r_wall,
-/area/station/engineering/engine/supermatter)
 "omB" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -69269,7 +69336,8 @@
 /area/station/maintenance/storage)
 "ouO" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -70706,7 +70774,8 @@
 /area/station/maintenance/asmaint)
 "pfI" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/carpet/grimey,
 /area/station/command/office/hop)
@@ -70748,11 +70817,19 @@
 /turf/simulated/floor/plasteel,
 /area/station/hallway/primary/starboard/west)
 "phw" = (
-/obj/machinery/atmospherics/supermatter_crystal/engine,
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging,
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4;
+	name = "air scrubber CO2"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	name = "air scrubber waste"
+	},
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging,
+/obj/machinery/atmospherics/supermatter_crystal/engine,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "pin" = (
@@ -70797,6 +70874,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/dispenser,
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/station/engineering/engine/supermatter)
 "piK" = (
@@ -71795,6 +71875,24 @@
 	icon_state = "white"
 	},
 /area/station/science/hallway)
+"pMg" = (
+/obj/machinery/atmospherics/pipe/simple/visible/universal{
+	dir = 4
+	},
+/obj/machinery/power/rad_collector{
+	anchored = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/engine,
+/area/station/engineering/engine/supermatter)
 "pMj" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
@@ -72117,9 +72215,6 @@
 	},
 /area/station/hallway/primary/aft/south)
 "pTj" = (
-/obj/structure/window/plasmareinforced{
-	dir = 8
-	},
 /obj/machinery/power/rad_collector{
 	anchored = 1
 	},
@@ -72131,6 +72226,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -73632,7 +73730,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/power/grounding_rod,
+/obj/machinery/power/grounding_rod{
+	anchored = 1
+	},
 /turf/simulated/floor/plating,
 /area/station/engineering/engine/supermatter)
 "qCH" = (
@@ -74306,7 +74406,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/control)
@@ -74866,7 +74967,8 @@
 /area/station/service/mime)
 "rhk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/wood,
 /area/station/security/permabrig)
@@ -75805,7 +75907,8 @@
 "rHm" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	icon_state = "whitepurplecorner"
@@ -76649,13 +76752,16 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/fpmaint2)
 "sgr" = (
-/obj/machinery/door/airlock/engineering/glass{
-	heat_proof = 1;
-	name = "Supermatter Chamber"
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
-/obj/effect/mapping_helpers/airlock/access/any/engineering/atmos,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/rad_collector{
+	anchored = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/visible,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "sgt" = (
@@ -77151,8 +77257,8 @@
 /obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
-/obj/machinery/atmospherics/portable/canister/nitrogen,
 /obj/effect/turf_decal/delivery/hollow,
+/obj/machinery/atmospherics/portable/canister/nitrogen,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
 	},
@@ -77371,7 +77477,8 @@
 /area/station/medical/storage/secondary)
 "sCl" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	dir = 8;
@@ -78860,7 +78967,8 @@
 /area/station/engineering/hardsuitstorage)
 "twe" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel,
 /area/station/security/prisonlockers)
@@ -79926,7 +80034,8 @@
 "tWz" = (
 /obj/item/beacon,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/engine,
 /area/station/science/test_chamber)
@@ -80611,11 +80720,14 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/window/plasmareinforced{
-	dir = 1
-	},
 /obj/machinery/power/rad_collector{
 	anchored = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -81274,8 +81386,8 @@
 /turf/simulated/floor/plasteel,
 /area/station/maintenance/fpmaint)
 "uJF" = (
-/obj/machinery/atmospherics/pipe/simple/visible,
-/turf/simulated/wall/r_wall,
+/obj/machinery/atmospherics/unary/thermomachine,
+/turf/simulated/floor/noslip,
 /area/station/engineering/control)
 "uKy" = (
 /obj/structure/girder,
@@ -81478,9 +81590,6 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/aft)
 "uTu" = (
-/obj/structure/window/plasmareinforced{
-	dir = 8
-	},
 /obj/machinery/power/rad_collector{
 	anchored = 1
 	},
@@ -81492,6 +81601,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -81764,7 +81876,8 @@
 /area/station/hallway/primary/starboard/west)
 "uZW" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	icon_state = "freezerfloor"
@@ -82008,12 +82121,6 @@
 /turf/simulated/floor/plasteel,
 /area/station/science/hallway)
 "vhd" = (
-/obj/structure/window/plasmareinforced{
-	dir = 4
-	},
-/obj/machinery/power/rad_collector{
-	anchored = 1
-	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
@@ -82022,6 +82129,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/machinery/power/rad_collector{
+	anchored = 1
 	},
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
@@ -82161,7 +82271,9 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/grounding_rod,
+/obj/machinery/power/grounding_rod{
+	anchored = 1
+	},
 /turf/simulated/floor/plating,
 /area/station/engineering/engine/supermatter)
 "vmN" = (
@@ -82915,6 +83027,13 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
+/obj/machinery/door/airlock/engineering/glass{
+	autoclose = 0;
+	id_tag = "engsm_door_ext";
+	locked = 1;
+	name = "Supermatter Exterior Access"
+	},
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
 	},
@@ -83036,7 +83155,8 @@
 /area/station/science/server/coldroom)
 "vJm" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /obj/machinery/light{
 	dir = 4
@@ -83899,26 +84019,13 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/asmaint2)
 "wiS" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 4;
-	autolink_id = 69
-	},
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 9
-	},
-/obj/structure/window/plasmareinforced,
-/obj/structure/window/plasmareinforced{
-	dir = 4
-	},
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 9
 	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
+/obj/effect/spawner/window/plastitanium,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "wja" = (
@@ -84499,7 +84606,8 @@
 /area/station/public/locker)
 "wyh" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+	dir = 8;
+	name = "air scrubber (N2)"
 	},
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
@@ -84802,29 +84910,22 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 8
+	},
 /turf/simulated/floor/engine,
 /area/station/engineering/control)
 "wGJ" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging,
-/obj/structure/window/plasmareinforced{
-	dir = 4
-	},
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10
 	},
+/obj/effect/spawner/window/plastitanium,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "wGR" = (
@@ -86214,16 +86315,6 @@
 	},
 /turf/simulated/floor/plasteel,
 /area/station/hallway/secondary/entry/south)
-"xuG" = (
-/obj/machinery/atmospherics/unary/portables_connector{
-	dir = 1
-	},
-/obj/machinery/atmospherics/portable/canister,
-/obj/effect/turf_decal/delivery/hollow,
-/turf/simulated/floor/plasteel{
-	icon_state = "dark"
-	},
-/area/station/engineering/control)
 "xuQ" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -86261,25 +86352,8 @@
 	},
 /area/station/security/brig)
 "xvk" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 6
-	},
-/obj/structure/window/plasmareinforced{
-	dir = 1
-	},
-/obj/structure/window/plasmareinforced{
-	dir = 8
-	},
 /obj/structure/railing/corner,
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
+/obj/effect/spawner/window/plastitanium,
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/supermatter)
 "xvs" = (
@@ -87040,7 +87114,6 @@
 	},
 /area/station/command/bridge)
 "xOn" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
@@ -116131,7 +116204,7 @@ dyH
 cSx
 cRf
 cRp
-xuG
+lsx
 cSI
 vmA
 piF
@@ -116388,10 +116461,10 @@ lbX
 jbt
 idF
 dfo
-xuG
+lsx
 sKE
 gHg
-erU
+cCM
 erU
 cSI
 fqV
@@ -116645,7 +116718,7 @@ kjN
 cSx
 cVw
 cSI
-omz
+cSI
 ffY
 jUZ
 lrJ
@@ -117421,7 +117494,7 @@ kUR
 cVB
 wGJ
 wiS
-cVT
+gPf
 rmT
 dkB
 dlg
@@ -117672,9 +117745,9 @@ mZX
 mXy
 mGh
 cVy
+hhn
 cSI
-cSI
-ffY
+pMg
 uTu
 ioM
 pTj
@@ -117929,8 +118002,8 @@ cYQ
 mNd
 gSP
 hQW
-mWa
-sud
+dfo
+lsx
 lVr
 vWF
 erU
@@ -118184,7 +118257,7 @@ tQJ
 cVp
 cSU
 jVj
-cSx
+dam
 hQW
 mWa
 sud
