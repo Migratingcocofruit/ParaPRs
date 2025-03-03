@@ -31187,12 +31187,11 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/asmaint)
 "cgg" = (
-/obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
-/turf/space,
-/area/space/nearstation)
+/turf/simulated/floor/plating,
+/area/space)
 "cgh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -68503,13 +68502,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/security/prison/cell_block/a)
-"nVq" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/turf/space,
-/area/space/nearstation)
 "nXc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan,
 /obj/structure/cable{
@@ -68925,13 +68917,6 @@
 /obj/structure/bookcase,
 /turf/simulated/floor/wood,
 /area/station/security/permabrig)
-"oge" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/space,
-/area/space/nearstation)
 "ogf" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/directional/south,
@@ -83380,13 +83365,6 @@
 /obj/item/stack/sheet/metal,
 /turf/simulated/floor/plating,
 /area/station/maintenance/apmaint)
-"vBU" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/space,
-/area/space/nearstation)
 "vBX" = (
 /obj/structure/reagent_dispensers/spacecleanertank{
 	pixel_y = 27
@@ -110809,7 +110787,7 @@ pyC
 mnN
 aaa
 aaa
-oge
+ghX
 exU
 exU
 exU
@@ -111064,9 +111042,9 @@ scI
 scI
 vbt
 dmr
-vBU
-vBU
-nVq
+xYW
+xYW
+lRc
 aaa
 aaa
 aaa
