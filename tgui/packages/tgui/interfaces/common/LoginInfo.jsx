@@ -28,6 +28,7 @@ export const LoginInfo = (_properties) => {
             content="Eject ID"
             color="good"
             onClick={() => act('login_eject')}
+            mr={0.5}
           />
           <Button icon="sign-out-alt" content="Logout" color="good" onClick={() => act('login_logout')} />
         </Stack.Item>
