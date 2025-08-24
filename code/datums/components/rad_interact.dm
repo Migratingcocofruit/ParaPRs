@@ -38,7 +38,8 @@
 	var/diff = dx - dy
 
 	// Intensity decays quadratically with distance from source
-	intensity *= 1 / (dx ** 2 + dy ** 2)
+	if(dx + dy)
+		intensity *= 1 / (dx ** 2 + dy ** 2)
 
 	// If we decayed enough we can stop
 	if(intensity < RAD_BACKGROUND_RADIATION)
