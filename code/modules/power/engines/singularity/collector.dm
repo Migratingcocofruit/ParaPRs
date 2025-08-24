@@ -40,6 +40,9 @@
 	. = ..()
 	loaded_tank = new /obj/item/tank/internals/plasma(src)
 	toggle_power()
+	if(active)
+		AddComponent(/datum/component/rad_interact)
+
 
 /obj/machinery/power/rad_collector/process()
 	if(!loaded_tank)
@@ -183,11 +186,13 @@
 /obj/machinery/power/rad_collector/rad_act(atom/source, amount, emission_type)
 	// Log the absorption at current time. If we already have one logged and the new value is bigger overwrite it.
 	if(emission_type == BETA_RAD)
+		amount *= (1 - rad_insulation_beta)
 		if(!beta_waves["[world.time]"])
 			beta_waves += list("[world.time]" = amount)
 		else if(beta_waves["[world.time]"] < amount)
 			beta_waves["[world.time]"] = amount
 	if(emission_type == GAMMA_RAD)
+		amount *= (1 - rad_insulation_gamma)
 		if(!gamma_waves["[world.time]"])
 			gamma_waves += list("[world.time]" = amount)
 		else if(gamma_waves["[world.time]"] < amount)
@@ -209,9 +214,13 @@
 /obj/machinery/power/rad_collector/proc/toggle_power()
 	active = !active
 	if(active)
+		AddComponent(/datum/component/rad_interact)
 		icon_state = "ca_on"
 		flick("ca_active", src)
 	else
+		var/datum/component/rad_interact/rad = GetComponent(/datum/component/rad_interact)
+		if(rad)
+			rad.RemoveComponent()
 		icon_state = "ca"
 		flick("ca_deactive", src)
 	update_icons()

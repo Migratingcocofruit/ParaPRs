@@ -20,7 +20,7 @@
 	rad_signaler = get_radiation_signaler(new_turf.z)
 	RegisterSignal(rad_signaler, COMSIG_RAD_PULSE, PROC_REF(do_rad_pulse))
 
-/datum/component/rad_interact/proc/do_rad_pulse(datum/source, atom/rad_source, emission_type, intensity)
+/datum/component/rad_interact/proc/do_rad_pulse(datum/source, atom/rad_source, emission_type, intensity, source_radius)
 	SIGNAL_HANDLER // COMSIG_RAD_PULSE
 	var/atom/thing = parent
 	var/dx = abs(thing.x - rad_source.x)
@@ -37,9 +37,10 @@
 	// dt / dx = dy and dt / dy = dx
 	var/diff = dx - dy
 
-	// Intensity decays quadratically with distance from source
+	// Intensity decays linearly with distance from source because we are in 2D space
+	// This makes balancing rad collectors much easier, especially for singulo
 	if(dx + dy)
-		intensity *= 1 / (dx ** 2 + dy ** 2)
+		intensity *= 1 / ((dx ** 2 + dy ** 2) ** 0.5)
 
 	// If we decayed enough we can stop
 	if(intensity < RAD_BACKGROUND_RADIATION)

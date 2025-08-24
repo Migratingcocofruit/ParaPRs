@@ -91,6 +91,8 @@
 	)
 
 	AddElement(/datum/element/connect_loc, loc_connections)
+	if(rad_conversion_amount)
+		AddComponent(/datum/component/rad_interact)
 
 	recalculate_atmos_connectivity()
 
@@ -656,10 +658,6 @@
 	rad_insulation_gamma = RAD_GAMMA_WINDOW
 	superconductivity = ZERO_HEAT_TRANSFER_COEFFICIENT
 	rad_conversion_amount = 2
-
-/obj/structure/window/plasmabasic/Initialize(mapload, direct)
-	. = ..()
-	AddComponent(/datum/component/rad_interact)
 
 /obj/structure/window/plasmareinforced
 	name = "reinforced plasma window"

@@ -39,6 +39,8 @@
 /obj/item/geiger_counter/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
+	if(scanning)
+		AddComponent(/datum/component/rad_interact)
 
 	soundloop = new(list(src), FALSE)
 
@@ -139,7 +141,6 @@
 	loop.start()
 
 /obj/item/geiger_counter/rad_act(atom/source, amount, emission_type)
-	amount *= 100
 	if(amount <= RAD_BACKGROUND_RADIATION || !scanning)
 		return
 	switch(emission_type)
@@ -151,11 +152,20 @@
 			current_tick_amount_gamma += amount
 	update_icon(UPDATE_ICON_STATE)
 
+/obj/item/geiger_counter/proc/toggle_scan()
+	scanning = !scanning
+	if(scanning)
+		AddComponent(/datum/component/rad_interact)
+	else
+		var/datum/component/rad_interact/rad = GetComponent(/datum/component/rad_interact)
+		if(rad)
+			rad.RemoveComponent()
+
 /obj/item/geiger_counter/activate_self(mob/user)
 	if(..())
 		return FINISH_ATTACK
 
-	scanning = !scanning
+	toggle_scan()
 	update_icon(UPDATE_ICON_STATE)
 	to_chat(user, "<span class='notice'>[bicon(src)] You switch [scanning ? "on" : "off"] [src].</span>")
 

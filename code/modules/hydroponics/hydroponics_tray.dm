@@ -91,6 +91,7 @@
 	plant_hud_set_pest()
 	plant_hud_set_weed()
 	create_reagents(300) // This should get cleared every time it is filled, barring admemery
+	AddComponent(/datum/component/rad_interact)
 
 /obj/machinery/hydroponics/constructable
 	icon_state = "hydrotray3"
@@ -1122,11 +1123,9 @@
 	// adjust radiation value according to type
 	switch(emission_type)
 		if(GAMMA_RAD)
-			amount /= ((1 - rad_insulation_gamma) / 2)
-		if(BETA_RAD)
-			amount /= (1 - rad_insulation_beta)
+			amount *= 2
 		if(ALPHA_RAD)
-			amount /= 2
+			amount /= 10
 
 	var/top_range = 100 * amount / (amount + 50)
 	var/roll = rand(0, top_range)

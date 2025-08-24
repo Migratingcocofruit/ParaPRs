@@ -41,6 +41,8 @@
 	. = ..()
 	soundloop = new(list(), FALSE, TRUE)
 	soundloop.volume = 5
+	if(scanning)
+		AddComponent(/datum/component/rad_interact)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/head/helmet/space/hardsuit/Destroy()
@@ -127,6 +129,12 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/proc/toggle_geiger_counter()
 	scanning = !scanning
+	if(scanning)
+		AddComponent(/datum/component/rad_interact)
+	else
+		var/datum/component/rad_interact/rad = GetComponent(/datum/component/rad_interact)
+		if(rad)
+			rad.RemoveComponent()
 	if(ishuman(loc))
 		to_chat(loc, "<span class='notice'>You toggle [src]'s internal geiger counter [scanning ? "on" : "off"].</span>")
 

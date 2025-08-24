@@ -14,6 +14,7 @@
 
 	AddElement(/datum/element/strippable)
 	RegisterSignal(src, COMSIG_STRIPPABLE_REQUEST_ITEMS, PROC_REF(get_strippable_items))
+	AddComponent(/datum/component/rad_interact)
 
 // Used to determine the forces dependend on the mob size
 // Will only change the force if the force was not set in the mob type itself
@@ -1116,11 +1117,8 @@
 	update_z(new_turf?.z)
 
 /mob/living/rad_act(atom/source, amount, emission_type)
-	// Mobs block very little Beta and Gamma radiation, but we still want the rads to affect them.
-	if(emission_type > ALPHA_RAD)
-		amount /=  (1 - RAD_MOB_INSULATION)
 	// Alpha sources outside the body don't do much
-	else if(!is_inside_mob(source))
+	if(emission_type == ALPHA_RAD && !is_inside_mob(source))
 		amount /= 100
 	if(!amount || (amount < RAD_MOB_SKIN_PROTECTION) || HAS_TRAIT(src, TRAIT_RADIMMUNE))
 		return
@@ -1135,6 +1133,7 @@
 
 	apply_effect((amount * RAD_MOB_COEFFICIENT) / max(1, (radiation ** 2) * RAD_OVERDOSE_REDUCTION), IRRADIATE, ARMOUR_VALUE_TO_PERCENTAGE(blocked))
 
+/// Whether a thing is inside a mob. As a baseline we assume it is if it's in the mob's contents but not worn by the mob
 /mob/living/proc/is_inside_mob(atom/thing)
 	if(!(thing in contents))
 		return FALSE
