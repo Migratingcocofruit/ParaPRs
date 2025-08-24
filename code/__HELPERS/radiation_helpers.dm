@@ -151,28 +151,10 @@
 /proc/radiation_pulse(atom/source, intensity, emission_type = ALPHA_RAD, log = FALSE)
 	if(!SSradiation.can_fire || intensity < RAD_BACKGROUND_RADIATION)
 		return
-	var/datum/radiation_wave/wave = new /datum/radiation_wave(source, intensity, emission_type)
 
-	var/turf/start_turf = source
+	var/datum/rad_signaler = get_radiation_signaler(source.z)
 
-	// Find the turf where we are
-	while(!istype(start_turf, /turf))
-		start_turf = start_turf.loc
-
-	var/list/things = get_rad_contents(start_turf, emission_type) // Radiate the waves origin frist
-	// Adjust the weights so the source tile doesn't get all the rads
-	wave.weight_sum = RAD_SOURCE_WEIGHT
-	wave.weights = list(wave.weight_sum)
-	for(var/atom/thing in things)
-		if(thing.UID() == source.UID())
-			// Don't block our own radiation
-			source.base_rad_act(source ,intensity, emission_type)
-		else
-			wave.weight_sum = wave.weight_sum * thing.base_rad_act(source ,intensity * wave.weight_sum, emission_type)
-	// Add the rest of the weight back
-	wave.weight_sum += (1 - RAD_SOURCE_WEIGHT)
-	// We can do this because we are on one tile so we have one weight
-	wave.weights[1] = wave.weight_sum
+	SEND_SIGNAL(rad_signaler, COMSIG_RAD_PULSE, source, emission_type, intensity)
 
 	var/static/last_huge_pulse = 0
 	if(intensity > 12000 && world.time > last_huge_pulse + 200)

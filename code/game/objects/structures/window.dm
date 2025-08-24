@@ -657,6 +657,10 @@
 	superconductivity = ZERO_HEAT_TRANSFER_COEFFICIENT
 	rad_conversion_amount = 2
 
+/obj/structure/window/plasmabasic/Initialize(mapload, direct)
+	. = ..()
+	AddComponent(/datum/component/rad_interact)
+
 /obj/structure/window/plasmareinforced
 	name = "reinforced plasma window"
 	desc = "A plasma-glass alloy window, with rods supporting it. It looks hopelessly tough to break. It also looks completely fireproof, considering how basic plasma windows are insanely fireproof. When hit with Gamma particles it will become charged and start emitting Beta particles"

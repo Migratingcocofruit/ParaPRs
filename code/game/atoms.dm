@@ -665,8 +665,8 @@
 			. = rad_insulation_beta
 		if(GAMMA_RAD)
 			. = rad_insulation_gamma
-	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, amount, emission_type)
 	if(amount >= RAD_BACKGROUND_RADIATION)
+		SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, amount, emission_type)
 		rad_act(source, amount * (1 - .), emission_type)
 
 /// Attempt to contaminate a single atom
