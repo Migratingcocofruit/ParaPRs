@@ -45,7 +45,7 @@
 	// Intensity decays linearly with distance from source because we are in 2D space
 	// This makes balancing rad collectors much easier, especially for singulo
 	if(dx + dy)
-		intensity *= 1 / ((dx ** 2 + dy ** 2) ** 0.5)
+		intensity /= ((dx ** 2 + dy ** 2) ** 0.5)
 
 	// If we decayed enough we can stop
 	if(intensity < RAD_BACKGROUND_RADIATION)
@@ -60,7 +60,7 @@
 			if(i == dx + dy)
 				turf_atoms = get_rad_contents(curr_turf, emission_type)
 			else
-				turf_atoms = get_rad_blockers(curr_turf, emission_type)
+				intensity *= turf_rad_block(curr_turf, emission_type)
 
 		for(var/atom/blocker in turf_atoms)
 			if(QDELETED(blocker))
@@ -85,4 +85,4 @@
 			i++
 			diff += (dx - dy)
 
-	thing.base_rad_act(rad_source, intensity, emission_type)
+	thing.rad_act(rad_source, intensity, emission_type)

@@ -41,7 +41,7 @@
 		processing_list += thing.contents
 	. =	window_priority + collector_priority + other_priority
 
-/proc/get_rad_blockers(atom/location, emission_type)
+/proc/turf_rad_block(atom/location, emission_type)
 	var/static/list/ignored_things = typecacheof(list(
 		/mob/camera,
 		/mob/dead,
@@ -52,7 +52,7 @@
 		/atom/movable/emissive_blocker,
 	))
 	var/list/processing_list = list(location)
-	. = list()
+	. = 1
 	while(length(processing_list))
 		var/atom/thing = processing_list[1]
 		processing_list -= thing
@@ -60,8 +60,8 @@
 			continue
 		// 1 means no rad insulation, which means perfectly permeable, so no interaction with it directly, but the contents might be relevant.
 		// HAS_TRAIT is used manually here since the macros for HAS_TRAIT as well as the traits aren't being recognized here
-		if(rad_insulate(emission_type, thing) < 1 || (thing.status_traits ? (thing.status_traits["absorb_rads"] ? TRUE : FALSE) : FALSE))
-			. += thing
+		if(rad_insulate(emission_type, thing) < 1)
+			. *= rad_insulate(emission_type, thing)
 		if((thing.flags_2 & RAD_PROTECT_CONTENTS_2) || (SEND_SIGNAL(thing, COMSIG_ATOM_RAD_PROBE) & COMPONENT_BLOCK_RADIATION))
 			continue
 		if(ishuman(thing))
