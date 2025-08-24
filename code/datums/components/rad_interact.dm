@@ -28,8 +28,10 @@
 /datum/component/rad_interact/proc/do_rad_pulse(datum/source, atom/rad_source, emission_type, intensity, source_radius)
 	SIGNAL_HANDLER // COMSIG_RAD_PULSE
 	var/atom/thing = parent
-	var/dx = abs(thing.x - rad_source.x)
-	var/dy = abs(thing.y - rad_source.y)
+	var/turf/start = get_turf(rad_source)
+	var/turf/end = get_turf(thing)
+	var/dx = abs(end.x - start.x)
+	var/dy = abs(end.y - start.y)
 
 	var/x_step = thing.x > rad_source.x ? 1 : -1
 	var/y_step = thing.y > rad_source.y ? 1 : -1
