@@ -71,3 +71,6 @@ Ask ninjanomnom if they're around
 #define ALPHA_RAD 1
 #define BETA_RAD 2
 #define GAMMA_RAD 3
+
+/// gets the insulation type corresponding to the given emission
+#define rad_insulate(emission_type, thing) emission_type == ALPHA_RAD ? thing.rad_insulation_alpha : emission_type == BETA_RAD ? thing.rad_insulation_beta : thing.rad_insulation_gamma

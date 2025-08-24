@@ -41,7 +41,7 @@
 	loaded_tank = new /obj/item/tank/internals/plasma(src)
 	toggle_power()
 	if(active)
-		AddComponent(/datum/component/rad_interact)
+		AddComponent(/datum/component/rad_interact, list(BETA_RAD, GAMMA_RAD))
 
 
 /obj/machinery/power/rad_collector/process()
@@ -214,7 +214,7 @@
 /obj/machinery/power/rad_collector/proc/toggle_power()
 	active = !active
 	if(active)
-		AddComponent(/datum/component/rad_interact)
+		AddComponent(/datum/component/rad_interact, list(BETA_RAD, GAMMA_RAD))
 		icon_state = "ca_on"
 		flick("ca_active", src)
 	else

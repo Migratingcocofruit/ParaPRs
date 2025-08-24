@@ -18,22 +18,14 @@
 	var/list/collector_priority = list()
 	var/list/other_priority = list()
 	. = list()
-	var/insulation = 1
 	while(length(processing_list))
 		var/atom/thing = processing_list[1]
 		processing_list -= thing
 		if(!thing || ignored_things[thing.type])
 			continue
-		switch(emission_type)
-			if(ALPHA_RAD)
-				insulation = thing.rad_insulation_alpha
-			if(BETA_RAD)
-				insulation = thing.rad_insulation_beta
-			if(GAMMA_RAD)
-				insulation = thing.rad_insulation_gamma
 		// 1 means no rad insulation, which means perfectly permeable, so no interaction with it directly, but the contents might be relevant.
 		// HAS_TRAIT is used manually here since the macros for HAS_TRAIT as well as the traits aren't being recognized here
-		if(insulation < 1 || (thing.status_traits ? (thing.status_traits["absorb_rads"] ? TRUE : FALSE) : FALSE))
+		if(rad_insulate(emission_type, thing) < 1 || (thing.status_traits ? (thing.status_traits["absorb_rads"] ? TRUE : FALSE) : FALSE))
 			if(istype(thing, /obj/structure/window))
 				window_priority += thing
 			else if(istype(thing, /obj/machinery/power/rad_collector))
@@ -48,6 +40,35 @@
 				continue
 		processing_list += thing.contents
 	. =	window_priority + collector_priority + other_priority
+
+/proc/get_rad_blockers(atom/location, emission_type)
+	var/static/list/ignored_things = typecacheof(list(
+		/mob/camera,
+		/mob/dead,
+		/obj/effect,
+		/obj/docking_port,
+		/atom/movable/lighting_object,
+		/obj/item/projectile,
+		/atom/movable/emissive_blocker,
+	))
+	var/list/processing_list = list(location)
+	. = list()
+	while(length(processing_list))
+		var/atom/thing = processing_list[1]
+		processing_list -= thing
+		if(!thing || ignored_things[thing.type])
+			continue
+		// 1 means no rad insulation, which means perfectly permeable, so no interaction with it directly, but the contents might be relevant.
+		// HAS_TRAIT is used manually here since the macros for HAS_TRAIT as well as the traits aren't being recognized here
+		if(rad_insulate(emission_type, thing) < 1 || (thing.status_traits ? (thing.status_traits["absorb_rads"] ? TRUE : FALSE) : FALSE))
+			. += thing
+		if((thing.flags_2 & RAD_PROTECT_CONTENTS_2) || (SEND_SIGNAL(thing, COMSIG_ATOM_RAD_PROBE) & COMPONENT_BLOCK_RADIATION))
+			continue
+		if(ishuman(thing))
+			var/mob/living/carbon/human/target_mob = thing
+			if(target_mob.get_rad_protection() >= 0.99) // I would do exactly equal to 1, but you will never hit anything between 1 and .975, and byond seems to output 0.99999
+				continue
+		processing_list += thing.contents
 
 /proc/get_rad_contamination_adjacent(atom/location, atom/source)
 	var/static/list/ignored_things = typecacheof(list(
@@ -152,7 +173,7 @@
 	if(!SSradiation.can_fire || intensity < RAD_BACKGROUND_RADIATION)
 		return
 
-	var/datum/rad_signaler = get_radiation_signaler(source.z)
+	var/datum/rad_signaler = get_radiation_signaler(source.z, emission_type)
 
 	SEND_SIGNAL(rad_signaler, COMSIG_RAD_PULSE, source, emission_type, intensity)
 

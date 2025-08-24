@@ -91,7 +91,7 @@
 	plant_hud_set_pest()
 	plant_hud_set_weed()
 	create_reagents(300) // This should get cleared every time it is filled, barring admemery
-	AddComponent(/datum/component/rad_interact)
+	AddComponent(/datum/component/rad_interact, list(ALPHA_RAD, BETA_RAD, GAMMA_RAD))
 
 /obj/machinery/hydroponics/constructable
 	icon_state = "hydrotray3"

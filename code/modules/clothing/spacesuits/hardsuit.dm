@@ -42,7 +42,7 @@
 	soundloop = new(list(), FALSE, TRUE)
 	soundloop.volume = 5
 	if(scanning)
-		AddComponent(/datum/component/rad_interact)
+		AddComponent(/datum/component/rad_interact, list(ALPHA_RAD, BETA_RAD, GAMMA_RAD))
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/head/helmet/space/hardsuit/Destroy()
@@ -130,7 +130,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/proc/toggle_geiger_counter()
 	scanning = !scanning
 	if(scanning)
-		AddComponent(/datum/component/rad_interact)
+		AddComponent(/datum/component/rad_interact, list(ALPHA_RAD, BETA_RAD, GAMMA_RAD))
 	else
 		var/datum/component/rad_interact/rad = GetComponent(/datum/component/rad_interact)
 		if(rad)

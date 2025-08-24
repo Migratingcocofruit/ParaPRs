@@ -92,7 +92,7 @@
 
 	AddElement(/datum/element/connect_loc, loc_connections)
 	if(rad_conversion_amount)
-		AddComponent(/datum/component/rad_interact)
+		AddComponent(/datum/component/rad_interact, list(GAMMA_RAD))
 
 	recalculate_atmos_connectivity()
 

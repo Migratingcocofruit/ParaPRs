@@ -40,7 +40,7 @@
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	if(scanning)
-		AddComponent(/datum/component/rad_interact)
+		AddComponent(/datum/component/rad_interact, list(ALPHA_RAD, BETA_RAD, GAMMA_RAD))
 
 	soundloop = new(list(src), FALSE)
 
@@ -155,7 +155,7 @@
 /obj/item/geiger_counter/proc/toggle_scan()
 	scanning = !scanning
 	if(scanning)
-		AddComponent(/datum/component/rad_interact)
+		AddComponent(/datum/component/rad_interact, list(ALPHA_RAD, BETA_RAD, GAMMA_RAD))
 	else
 		var/datum/component/rad_interact/rad = GetComponent(/datum/component/rad_interact)
 		if(rad)

@@ -14,7 +14,7 @@
 
 	AddElement(/datum/element/strippable)
 	RegisterSignal(src, COMSIG_STRIPPABLE_REQUEST_ITEMS, PROC_REF(get_strippable_items))
-	AddComponent(/datum/component/rad_interact)
+	AddComponent(/datum/component/rad_interact, list(ALPHA_RAD, BETA_RAD, GAMMA_RAD))
 
 // Used to determine the forces dependend on the mob size
 // Will only change the force if the force was not set in the mob type itself
