@@ -32,6 +32,9 @@
 	var/x = rad_source.x
 	var/y = rad_source.y
 
+	// distance to next vertical grid line - distance to next horizontal grid line
+	// On a line of length dx * dy (in arbitrary units)
+	// dt / dx = dy and dt / dy = dx
 	var/diff = dx - dy
 
 	// Intensity decays quadratically with distance from source
@@ -41,13 +44,17 @@
 	if(intensity < RAD_BACKGROUND_RADIATION)
 		return
 
-	for(var/i in 1 to (1 + dx + dy))
+	// Using this loop style so i can be incremented mid loop
+	for(var/i = 0; i < (1 + dx + dy); i++)
 		//visit
 		var/turf/curr_turf = locate(x, y, thing.z)
 		var/list/rad_atoms = get_rad_contents(curr_turf, emission_type)
 		for(var/atom/blocker in rad_atoms)
 			if(QDELETED(blocker))
 				continue
+			// Atoms from the tile are listed by priority so we need to stop blocking if we reached ourselves
+			if(i == dx + dy && blocker.UID() == thing.UID())
+				break
 			intensity *= rad_insulate(emission_type, blocker)
 			// If we decayed enough we can stop
 			if(intensity < RAD_BACKGROUND_RADIATION)
@@ -62,6 +69,7 @@
 		else
 			x += x_step
 			y += y_step
+			i++
 			diff += (dx - dy)
 
-	thing.base_rad_act(rad_source, intensity * rad_mod, emission_type)
+	thing.base_rad_act(rad_source, intensity, emission_type)
