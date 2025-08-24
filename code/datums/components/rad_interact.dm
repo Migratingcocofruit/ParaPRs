@@ -47,7 +47,7 @@
 	// Intensity decays linearly with distance from source because we are in 2D space
 	// This makes balancing rad collectors much easier, especially for singulo
 	if(dx + dy)
-		intensity /= ((dx ** 2 + dy ** 2) ** 0.5)
+		intensity /= 2 * PI * ((dx ** 2 + dy ** 2) ** 0.5)
 
 	// If we decayed enough we can stop
 	if(intensity < RAD_BACKGROUND_RADIATION)
