@@ -6,12 +6,12 @@ GLOBAL_LIST_EMPTY(rad_interact_components)
 	var/list/emission_types = list()
 
 /datum/component/rad_interact/Initialize(list/_emission_types)
-	if(!isatom(parent))
+	if(!parent || !isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	var/atom/thing = parent
 	var/turf/ground = get_turf(parent)
 	if(!ground)
-		return
+		return COMPONENT_INCOMPATIBLE
 
 	emission_types = _emission_types.Copy()
 	RegisterSignal(thing, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(change_z))
@@ -33,6 +33,8 @@ GLOBAL_LIST_EMPTY(rad_interact_components)
 
 
 /datum/component/rad_interact/proc/do_rad_pulse(turf/rad_source, emission_type, intensity, source_radius, sync = TRUE)
+	if(!parent)
+		return
 	var/atom/thing = parent
 	var/turf/end = get_turf(thing)
 	var/dx = abs(end.x - rad_source.x)

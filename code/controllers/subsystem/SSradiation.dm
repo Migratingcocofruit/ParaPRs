@@ -45,7 +45,8 @@ PROCESSING_SUBSYSTEM_DEF(radiation)
 		if(GLOB.rad_interact_components["[start.z]"])
 			for(var/datum/component/rad_interact/interactor in GLOB.rad_interact_components["[start.z]"]["[pulse_data[RAD_LIST_EMISSION_TYPE]]"])
 				interactor.do_rad_pulse(start, pulse_data[RAD_LIST_EMISSION_TYPE], pulse_data[RAD_LIST_INTENSITY], pulse_data[RAD_LIST_SOURCE_RADIUS], TRUE)
-		pulse_queue -= pulse_data
+
+	pulse_queue.Cut()
 
 	. = ..()
 

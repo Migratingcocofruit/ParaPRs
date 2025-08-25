@@ -5,7 +5,7 @@
 	icon_state = "reinforced_wall-0"
 	base_icon_state = "reinforced_wall"
 	explosion_block = 2
-	rad_insulation_gamma = RAD_VERY_EXTREME_INSULATION
+	rad_insulation_gamma = RAD_VERY_HEAVY_INSULATION
 	damage_cap = 600
 	hardness = 10
 	sheet_type = /obj/item/stack/sheet/plasteel
