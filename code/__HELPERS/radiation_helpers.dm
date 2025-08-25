@@ -1,3 +1,6 @@
+GLOBAL_LIST_INIT(rad_insul_turf_cache, list("[ALPHA_RAD]" = list(), "[BETA_RAD]" = list(), "[GAMMA_RAD]" = list()))
+GLOBAL_LIST_INIT(rad_item_cache, list("[ALPHA_RAD]" = list(), "[BETA_RAD]" = list(), "[GAMMA_RAD]" = list()))
+
 /**
   * A special GetAllContents that doesn't search past things with rad insulation
   * Components which return COMPONENT_BLOCK_RADIATION prevent further searching into that object's contents. The object itself will get returned still.
@@ -169,13 +172,27 @@
 		. += thing
 
 
-/proc/radiation_pulse(atom/source, intensity, emission_type = ALPHA_RAD, log = FALSE)
+/proc/radiation_pulse(atom/source, intensity, emission_type = ALPHA_RAD, log = FALSE, sync = TRUE)
 	if(!SSradiation.can_fire || intensity < RAD_BACKGROUND_RADIATION)
 		return
+	var/turf/start = get_turf(source)
+	// var/datum/rad_signaler = get_radiation_signaler(source.z, emission_type)
 
-	var/datum/rad_signaler = get_radiation_signaler(source.z, emission_type)
+	// SEND_SIGNAL(rad_signaler, COMSIG_RAD_PULSE, source, emission_type, intensity)
 
-	SEND_SIGNAL(rad_signaler, COMSIG_RAD_PULSE, source, emission_type, intensity)
+	// Queue into SSradiation and use the caches
+	if(sync)
+		SSradiation.pulse_queue += list(list(
+											RAD_LIST_SOURCE = start,
+											RAD_LIST_SOURCE_RADIUS = 0,
+											RAD_LIST_EMISSION_TYPE = emission_type,
+											RAD_LIST_INTENSITY = intensity
+											))
+	// Perform immediately and don't use the caches
+	else
+		if(GLOB.rad_interact_components["[start.z]"])
+			for(var/datum/component/rad_interact/interactor in GLOB.rad_interact_components["[start.z]"])
+				interactor.do_rad_pulse(start, emission_type, intensity, 0, FALSE)
 
 	var/static/last_huge_pulse = 0
 	if(intensity > 12000 && world.time > last_huge_pulse + 200)

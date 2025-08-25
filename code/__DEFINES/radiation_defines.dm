@@ -74,3 +74,9 @@ Ask ninjanomnom if they're around
 
 /// gets the insulation type corresponding to the given emission
 #define rad_insulate(emission_type, thing) (emission_type == ALPHA_RAD ? thing.rad_insulation_alpha : emission_type == BETA_RAD ? thing.rad_insulation_beta : thing.rad_insulation_gamma)
+
+#define RAD_LIST_COMPONENT "component"
+#define RAD_LIST_EMISSION_TYPE "emission_type"
+#define RAD_LIST_INTENSITY "intensity"
+#define RAD_LIST_SOURCE "source"
+#define RAD_LIST_SOURCE_RADIUS "source_radius"

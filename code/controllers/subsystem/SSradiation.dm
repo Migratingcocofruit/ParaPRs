@@ -15,6 +15,8 @@ PROCESSING_SUBSYSTEM_DEF(radiation)
 	var/list/prev_rad_cache = list()
 	/// Lazy list of all radioactive components
 	var/list/all_radiations
+	/// List of all pulses to be fired this tick
+	var/list/pulse_queue = list()
 
 
 /datum/controller/subsystem/processing/radiation/proc/warn(datum/component/radioactive/contamination)
@@ -33,6 +35,18 @@ PROCESSING_SUBSYSTEM_DEF(radiation)
 	if(world.time > last_rad_cache_update + rad_cache_update_interval)
 		refresh_rad_cache()
 		last_rad_cache_update = world.time
+	for(var/emission_type in GLOB.rad_insul_turf_cache)
+		GLOB.rad_insul_turf_cache[emission_type] = list()
+		GLOB.rad_item_cache[emission_type] = list()
+
+	// Run all queued pulses
+	for(var/list/pulse_data in pulse_queue)
+		var/turf/start = pulse_data[RAD_LIST_SOURCE]
+		if(GLOB.rad_interact_components["[start.z]"])
+			for(var/datum/component/rad_interact/interactor in GLOB.rad_interact_components["[start.z]"]["[pulse_data[RAD_LIST_EMISSION_TYPE]]"])
+				interactor.do_rad_pulse(start, pulse_data[RAD_LIST_EMISSION_TYPE], pulse_data[RAD_LIST_INTENSITY], pulse_data[RAD_LIST_SOURCE_RADIUS], TRUE)
+		pulse_queue -= pulse_data
+
 	. = ..()
 
 /datum/controller/subsystem/processing/radiation/proc/get_turf_radiation(turf/place)
