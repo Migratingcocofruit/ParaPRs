@@ -68,7 +68,7 @@ GLOBAL_LIST_EMPTY(rad_interact_components)
 	if(dx + dy)
 		intensity /= 2 * PI * ((dx ** 2 + dy ** 2) ** 0.5)
 
-	// If we decayed enough we can stop
+	// If we are too far to reach to begin with we just stop
 	if(intensity < RAD_BACKGROUND_RADIATION)
 		return
 
