@@ -3,6 +3,7 @@ GLOBAL_LIST_EMPTY(rad_interact_components)
 /// A component that casts a ray from a rad source to something that could be affected by rads
 /datum/component/rad_interact
 	var/list/emission_types = list()
+	var/my_z
 /// Same component but we can only get this via our reagents datum
 /datum/component/rad_interact/reagents
 
@@ -12,6 +13,7 @@ GLOBAL_LIST_EMPTY(rad_interact_components)
 		return COMPONENT_INCOMPATIBLE
 	var/atom/thing = parent
 	var/turf/ground = get_turf(parent)
+	my_z = ground.z
 	if(!ground)
 		return COMPONENT_INCOMPATIBLE
 
@@ -33,7 +35,14 @@ GLOBAL_LIST_EMPTY(rad_interact_components)
 		GLOB.rad_interact_components["[old_turf.z]"]["[emission]"] -= list(src)
 		GLOB.rad_interact_components["[new_turf.z]"]["[emission]"] |= list(src)
 
+	my_z = new_turf.z
 
+
+/datum/component/rad_interact/Destroy(force, silent)
+	for(var/emission in emission_types)
+		GLOB.rad_interact_components["[my_z]"]["[emission]"] -= list(src)
+		GLOB.rad_interact_components["[my_z]"]["[emission]"] |= list(src)
+	return ..()
 
 /datum/component/rad_interact/proc/do_rad_pulse(turf/rad_source, emission_type, intensity, source_radius, sync = TRUE)
 	if(!parent)
@@ -70,6 +79,7 @@ GLOBAL_LIST_EMPTY(rad_interact_components)
 		//visit
 		var/turf_mod = 1
 		var/turf/curr_turf = locate(x, y, thing.z)
+		GLOB.rad_visited++
 
 		// When we reach our own tile we check it against a different cache, one containing a list of the atom rather than a calculated final value. This is so we can take priority into account
 		if(i == dx + dy)
@@ -78,8 +88,10 @@ GLOBAL_LIST_EMPTY(rad_interact_components)
 				turf_atoms = get_rad_contents(curr_turf, emission_type)
 				if(sync)
 					GLOB.rad_item_cache["[emission_type]"][curr_turf] = turf_atoms.Copy()
+					GLOB.rad_item_cache_miss++
 			else
 				turf_atoms = GLOB.rad_item_cache[curr_turf]
+				GLOB.rad_item_cache_hit++
 			for(var/atom/blocker in turf_atoms)
 				if(QDELETED(blocker))
 					continue
@@ -95,8 +107,10 @@ GLOBAL_LIST_EMPTY(rad_interact_components)
 			turf_mod = turf_rad_block(curr_turf, emission_type)
 			if(sync)
 				GLOB.rad_insul_turf_cache["[emission_type]"][curr_turf] = turf_mod
+				GLOB.rad_cache_miss++
 		else
 			turf_mod = GLOB.rad_insul_turf_cache["[emission_type]"][curr_turf]
+			GLOB.rad_cache_hit++
 
 		intensity *= turf_mod
 

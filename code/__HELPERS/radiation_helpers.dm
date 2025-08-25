@@ -1,5 +1,10 @@
 GLOBAL_LIST_INIT(rad_insul_turf_cache, list("[ALPHA_RAD]" = list(), "[BETA_RAD]" = list(), "[GAMMA_RAD]" = list()))
 GLOBAL_LIST_INIT(rad_item_cache, list("[ALPHA_RAD]" = list(), "[BETA_RAD]" = list(), "[GAMMA_RAD]" = list()))
+GLOBAL_VAR_INIT(rad_visited, 0)
+GLOBAL_VAR_INIT(rad_cache_hit, 0)
+GLOBAL_VAR_INIT(rad_cache_miss, 0)
+GLOBAL_VAR_INIT(rad_item_cache_hit, 0)
+GLOBAL_VAR_INIT(rad_item_cache_miss, 0)
 
 /**
   * A special GetAllContents that doesn't search past things with rad insulation

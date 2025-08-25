@@ -33,6 +33,11 @@ PROCESSING_SUBSYSTEM_DEF(radiation)
 	if(world.time > last_rad_cache_update + rad_cache_update_interval)
 		refresh_rad_cache()
 		last_rad_cache_update = world.time
+	GLOB.rad_visited = 0
+	GLOB.rad_cache_hit = 0
+	GLOB.rad_cache_miss = 0
+	GLOB.rad_item_cache_hit = 0
+	GLOB.rad_item_cache_miss = 0
 	for(var/emission_type in GLOB.rad_insul_turf_cache)
 		GLOB.rad_insul_turf_cache[emission_type] = list()
 		GLOB.rad_item_cache[emission_type] = list()
