@@ -77,7 +77,7 @@
 				break // Don't bother adding ourselves to other reagent ids, it is redundant.
 	if(my_atom)
 		RegisterSignal(my_atom, COMSIG_ATOM_RAD_ACT, PROC_REF(radiation_react))
-		ADD_TRAIT(my_atom, TRAIT_ABSORB_RADS, "reagents_holder_[UID()]")
+
 
 /**
  * Removes reagents from the holder until the passed amount is matched.
@@ -250,8 +250,8 @@
 		var/datum/reagent/current_reagent = A
 		current_reagent.reaction_temperature(chem_temp, 100)
 
+
 /datum/reagents/proc/radiation_react(atom/source, amount, emission_type)
-	SIGNAL_HANDLER // COMSIG_ATOM_RAD_ACT
 	for(var/datum/reagent/current_reagent in reagent_list)
 		current_reagent.reaction_radiation(amount, emission_type)
 
@@ -590,12 +590,34 @@
  */
 /datum/reagents/proc/update_total()
 	total_volume = 0
+	var/list/rad_interacts = list()
+	var/list/new_rads = list()
 	for(var/A in reagent_list)
 		var/datum/reagent/R = A
 		if(R.volume < MINIMUM_REAGENT_AMOUNT)
 			del_reagent(R.id)
 		else
 			total_volume += R.volume
+			// We do this to check if the reagent reacts to radiation.
+			for(var/emission in list(ALPHA_RAD, BETA_RAD, GAMMA_RAD))
+				if(R.reaction_radiation(0, emission))
+					rad_interacts += emission
+					new_rads += emission
+	// Remove or add the rad interact component as needed
+	var/datum/component/rad_interact/rads = my_atom.GetComponent(/datum/component/rad_interact)
+	var/datum/component/rad_interact/reagents/reagent_rads = my_atom.GetComponent(/datum/component/rad_interact/reagents)
+
+	if(rads)
+		new_rads -= rads.emission_types
+	if(reagent_rads)
+		new_rads -= rads.emission_types
+	if(length(rad_interacts))
+		if(length(new_rads))
+			my_atom.AddComponent(/datum/component/rad_interact/reagents, rad_interacts)
+	else
+		if(reagent_rads)
+			reagent_rads.RemoveComponent()
+
 	return FALSE
 
 /**
@@ -1045,7 +1067,6 @@
 	addiction_list = null
 	if(my_atom)
 		UnregisterSignal(my_atom, COMSIG_ATOM_RAD_ACT)
-		REMOVE_TRAIT(my_atom, TRAIT_ABSORB_RADS, "reagents_holder_[UID()]")
 		if(my_atom.reagents == src)
 			my_atom.reagents = null
 	my_atom = null

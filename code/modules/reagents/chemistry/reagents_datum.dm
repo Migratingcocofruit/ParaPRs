@@ -55,6 +55,7 @@
 	/// If we burn in a fire, what color do we have?
 	var/burn_color
 
+
 /datum/reagent/Destroy()
 	. = ..()
 	holder = null
@@ -68,7 +69,7 @@
 
 /// By default do nothing
 /datum/reagent/proc/reaction_radiation(amount, emission_type)
-	return
+	return FALSE
 
 /**
  * React with a mob.

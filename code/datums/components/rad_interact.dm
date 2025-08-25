@@ -2,10 +2,12 @@ GLOBAL_LIST_EMPTY(rad_interact_components)
 
 /// A component that casts a ray from a rad source to something that could be affected by rads
 /datum/component/rad_interact
-	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/list/emission_types = list()
+/// Same component but we can only get this via our reagents datum
+/datum/component/rad_interact/reagents
 
-/datum/component/rad_interact/Initialize(list/_emission_types)
+
+/datum/component/rad_interact/Initialize(list/_emission_types, source = "self")
 	if(!parent || !isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	var/atom/thing = parent
@@ -19,6 +21,7 @@ GLOBAL_LIST_EMPTY(rad_interact_components)
 		GLOB.rad_interact_components["[ground.z]"] = list()
 	for(var/emission in emission_types)
 		GLOB.rad_interact_components["[ground.z]"]["[emission]"] += list(src)
+
 
 
 /datum/component/rad_interact/proc/change_z(datum/source, turf/old_turf, turf/new_turf)
@@ -113,4 +116,4 @@ GLOBAL_LIST_EMPTY(rad_interact_components)
 			i++
 			diff += (dx - dy)
 
-	thing.rad_act(rad_source, intensity, emission_type)
+	thing.base_rad_act(rad_source, intensity, emission_type)

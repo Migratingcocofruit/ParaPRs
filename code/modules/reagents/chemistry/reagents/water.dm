@@ -219,15 +219,20 @@
 
 /// If irradiated by gamma radiation and there are advanced viruses in the blood become a sample of viral genetic data
 /datum/reagent/blood/reaction_radiation(amount, emission_type)
-	if(emission_type == GAMMA_RAD && amount > 100)
-		if(data && data["viruses"])
-			var/list/strains = list("radiation" = list())
-			for(var/datum/disease/advance/virus in data["viruses"])
-				strains["radiation"] += virus.strain
-			if(length(strains["radiation"]))
-				var/blood_volume = volume
-				holder.remove_reagent(id, blood_volume)
-				holder.add_reagent("virus_genes", blood_volume, strains)
+	. = TRUE
+	if(!(emission_type == GAMMA_RAD) || !(data && data["viruses"] && length(data["viruses"])))
+		return FALSE
+	var/datum/disease/advance/test_virus = locate() in data["viruses"]
+	if(!test_virus)
+		return FALSE
+	if(amount > 100)
+		var/list/strains = list("radiation" = list())
+		for(var/datum/disease/advance/virus in data["viruses"])
+			strains["radiation"] += virus.strain
+		if(length(strains["radiation"]))
+			var/blood_volume = volume
+			holder.remove_reagent(id, blood_volume)
+			holder.add_reagent("virus_genes", blood_volume, strains)
 
 
 /datum/reagent/vaccine

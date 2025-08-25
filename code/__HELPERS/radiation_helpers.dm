@@ -182,12 +182,7 @@ GLOBAL_LIST_INIT(rad_item_cache, list("[ALPHA_RAD]" = list(), "[BETA_RAD]" = lis
 
 	// Queue into SSradiation and use the caches
 	if(sync)
-		SSradiation.pulse_queue += list(list(
-											RAD_LIST_SOURCE = start,
-											RAD_LIST_SOURCE_RADIUS = 0,
-											RAD_LIST_EMISSION_TYPE = emission_type,
-											RAD_LIST_INTENSITY = intensity
-											))
+		new /datum/radiation_wave(start, intensity, emission_type, 0)
 	// Perform immediately and don't use the caches
 	else
 		if(GLOB.rad_interact_components["[start.z]"])
