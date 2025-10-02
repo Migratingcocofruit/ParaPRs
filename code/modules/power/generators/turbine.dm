@@ -43,7 +43,7 @@
 /// The base value we add values dervied from componenet ratings to for power efficiency. higher value means lesser effect of parts
 #define POWER_EFF_PART_BASE 4
 /// Maximum possible thermal efficiency
-#define THERMAL_EFF_MAX 0.55
+#define THERMAL_EFF_MAX 0.6
 #define OVERDRIVE 4
 #define VERY_FAST 3
 #define FAST 2
@@ -374,6 +374,8 @@
 
 	// Record the pre burn temp. This is for the UI
 	compressor.pre_burn_temp = compressor.gas_contained.temperature()
+	// Record the pre burn pressure. This isn't used in the UI so doesn't need to be a compressor var
+	var/pre_burn_pressure = compressor.gas_contained.return_pressure()
 
 	// Burn the gas mix
 	for(var/i in 1 to (10 + (compressor.compression_ratio / 2)))
@@ -381,6 +383,8 @@
 
 	// Record the post burn temp. This is for the UI
 	compressor.post_burn_temp = compressor.gas_contained.temperature()
+	// Record the post burn pressure. This isn't used in the UI so doesn't need to be a compressor var
+	var/post_burn_pressure = compressor.gas_contained.return_pressure()
 
 	// We just changed our composition
 	gas_heat_capacity = compressor.gas_contained.heat_capacity()
@@ -390,8 +394,9 @@
 	THERMAL_EFF_MAX * \
 	((compressor.compression_ratio / COMPRESSION_RATIO_MAX) ** THERMAL_EFF_COMPRESSION_CURVE) * \
 	((THERMAL_EFF_PART_BASE + compressor.efficiency) / (THERMAL_EFF_PART_BASE + 4)) * \
-	(compressor.gas_contained.temperature() / (compressor.gas_contained.temperature() + THERMAL_EFF_TEMP_CURVE)) * \
+	min(compressor.gas_contained.temperature() / 37500, compressor.gas_contained.temperature() / (compressor.gas_contained.temperature() + THERMAL_EFF_TEMP_CURVE)) * \
 	(compressor.gas_contained.return_pressure() / (compressor.gas_contained.return_pressure() + output_side.return_pressure())) * \
+	max(0, (post_burn_pressure - pre_burn_pressure) / (pre_burn_pressure + post_burn_pressure + 1)) ** 0.3 * \
 	((1 - compressor.bearing_damage / BEARING_DAMAGE_MAX) ** 3)
 
 	var/kinetic_energy_gain = compressor.gas_contained.thermal_energy() * compressor.thermal_efficiency
