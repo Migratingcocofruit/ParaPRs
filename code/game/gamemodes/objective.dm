@@ -918,7 +918,41 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 #undef SWARM_GOAL_LOWER_BOUND
 #undef SWARM_GOAL_UPPER_BOUND
 
-// Traders
+// Steal the cargo shuttle with some loot
+
+/datum/objective/steal_cargo_shuttle
+	name = "Steal The Cargo Shuttle"
+	explanation_text = "Steal the station's cargo shuttle with at least 1000 credits worth of items on board by planting an SRD3000 shuttle redirection device on board"
+	martyr_compatible = TRUE
+	/// The total amount of credit value that needs to be on board
+	var/required_value = 1000
+	/// List of specific required items
+	var/list/required_items = list()
+
+/datum/objective/check_completion(credit_value, list/item_list)
+	. = TRUE
+	// list of names of all the items missing from the shuttle
+	var/list/missing_items = list()
+	var/missing_credits = required_value - credit_value
+	if(missing_credits > 0)
+		. = FALSE
+	for(var/obj/item/requried in required_items_list)
+		if(!(required in item_list))
+			missing_items += required.name
+			. = FALSE
+	send_message(owner, missing_credits, missing_items)
+	completed = .
+
+/datum/objective/steal_cargo_shuttle/proc/on_shuttle_steal(datum/source, credit_value, list/item_list)
+	SIGNAL_HANDLER // COMSIG_CARGO_STEAL
+	// So we don't uncomplete and objective if we manage to steal more than one shuttle
+	if(!completed)
+		check_completion(credit_value, item_list)
+
+/datum/objective/steal_cargo_shuttle/proc/send_message()
+	return
+
+// MARK: Traders
 // These objectives have no check_completion, they exist only to tell Sol Traders what to aim for.
 
 /datum/objective/trade
@@ -931,7 +965,7 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 /datum/objective/trade/credits
 	explanation_text = "Acquire at least 10,000 credits through trade."
 
-//wizard
+// MARK: wizard
 
 /datum/objective/wizchaos
 	explanation_text = "Wreak havoc upon the station as much you can. Send those wandless Nanotrasen scum a message!"
@@ -943,6 +977,7 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 	needs_target = FALSE
 	completed = TRUE
 
+// MARK: Place holders
 // Placeholder objectives that will replace themselves
 
 /datum/objective/delayed
