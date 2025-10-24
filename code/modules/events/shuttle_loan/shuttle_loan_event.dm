@@ -10,8 +10,10 @@
 	var/dispatch_attempts = 3
 
 /datum/event/shuttle_loan/setup()
-	var/situation_type = pick(subtypesof(/datum/shuttle_loan_situation))
-	situation = new situation_type
+	// Randomly select a situation if we don't have one
+	if(!situation)
+		var/situation_type = pick(subtypesof(/datum/shuttle_loan_situation))
+		situation = new situation_type
 	if(!SSshuttle.supply.canMove())
 		log_debug("Shuttle loan event fired while shuttle cannot move. Reattempting in 30s.")
 		if(dispatch_attempts)
@@ -58,3 +60,6 @@
 	var/datum/event/shuttle_loan/shuttle_loan = locateUID(SSshuttle.shuttle_loan_UID)
 	if(!shuttle_loan.dispatched)
 		return
+
+/datum/event/shuttle_loan/steal
+	var/datum/shuttle_loan_situation/situation =
