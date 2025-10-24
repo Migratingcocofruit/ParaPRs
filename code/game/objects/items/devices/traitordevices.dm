@@ -548,3 +548,42 @@
 			playsound(user, on_hit_sound, 75, TRUE)
 			break
 	to_chat(user, "<span class='notice'>[range_messages[range_index]]</span>")
+
+/// Tot item that causes a cargo hijack event and steals the cargo shuttle's contents
+/obj/item/shuttle_redirector
+	name = "Supply shuttle redirector"
+	desc = "Overrides a supply shuttle's navigation program to redirect it to a different location"
+	icon = 'icons/obj/device.dmi'
+	icon_state = "redirector_inhand"
+	new_attack_chain = TRUE
+
+/obj/item/shuttle_redirector/activate_self(mob/user)
+	if(. = ..())
+		return
+	if(!istype(get_area(user), /area/shuttle/supply))
+		to_chat(user, "<span class='warning'>You need to be on the supply shuttle to use this</span>")
+		return
+	if(do_after(user, 5))
+		to_chat(user, "<span class='info'>You connect the shuttle redirector to the shuttle's systems</span>")
+		new /obj/structure/shuttle_redirector(get_turf(src))
+		qdel(src)
+
+/// The deployed form of the shuttle redirector which can be neutralized
+/obj/structure/shuttle_redirector
+	name = "Supply shuttle redirector"
+	desc = "Overrides a supply shuttle's navigation program to redirect it to a different location"
+	icon = 'icons/obj/device.dmi'
+	icon_state = "redirector_planted"
+	anchored = TRUE
+	new_attack_chain = TRUE
+	var/timer = 300
+	var/active = TRUE
+
+/obj/strucure/shuttle_redirector/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj)
+
+/obj/structure/shuttle_redirector/process()
+	timer--
+	if(timer <= 0)
+		redirect_shuttle()

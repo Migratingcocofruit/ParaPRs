@@ -929,6 +929,10 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 	/// List of specific required items
 	var/list/required_items = list()
 
+/datum/objective/steal_cargo_shuttle/New(text, datum/team/team_to_join, datum/mind/_owner)
+	. = ..()
+	RegisterSignal(SSshuttle.supply, COMSIG_CARGO_STEAL, PROC_REF(on_shuttle_steal))
+
 /datum/objective/check_completion(credit_value, list/item_list)
 	. = TRUE
 	// list of names of all the items missing from the shuttle
