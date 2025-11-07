@@ -52,27 +52,27 @@ fn milla_create_environment(
 ) -> eyre::Result<ByondValue> {
     logging::setup_panic_handler();
     Ok(ByondValue::from(internal_create_environment(
-        conversion::byond_to_option_f32(oxygen)?,
-        conversion::byond_to_option_f32(carbon_dioxide)?,
-        conversion::byond_to_option_f32(nitrogen)?,
-        conversion::byond_to_option_f32(toxins)?,
-        conversion::byond_to_option_f32(sleeping_agent)?,
-        conversion::byond_to_option_f32(agent_b)?,
-        conversion::byond_to_option_f32(hydrogen)?,
-        conversion::byond_to_option_f32(temperature)?,
-    ) as f32))
+        conversion::byond_to_option_f64(oxygen)?,
+        conversion::byond_to_option_f64(carbon_dioxide)?,
+        conversion::byond_to_option_f64(nitrogen)?,
+        conversion::byond_to_option_f64(toxins)?,
+        conversion::byond_to_option_f64(sleeping_agent)?,
+        conversion::byond_to_option_f64(agent_b)?,
+        conversion::byond_to_option_f64(hydrogen)?,
+        conversion::byond_to_option_f64(temperature)?,
+    ) as f64))
 }
 
 /// Define an environment that a tile can be exposed to.
 pub(crate) fn internal_create_environment(
-    oxygen: Option<f32>,
-    carbon_dioxide: Option<f32>,
-    nitrogen: Option<f32>,
-    toxins: Option<f32>,
-    sleeping_agent: Option<f32>,
-    agent_b: Option<f32>,
-    hydrogen: Option<f32>,
-    temperature: Option<f32>,
+    oxygen: Option<f64>,
+    carbon_dioxide: Option<f64>,
+    nitrogen: Option<f64>,
+    toxins: Option<f64>,
+    sleeping_agent: Option<f64>,
+    agent_b: Option<f64>,
+    hydrogen: Option<f64>,
+    temperature: Option<f64>,
 ) -> u8 {
     let mut tile = Tile::new();
     if let Some(value) = oxygen {
@@ -136,14 +136,14 @@ fn milla_load_turfs(
             conversion::byond_to_option_f32(data[3])?,
             conversion::byond_to_option_f32(data[4])?,
             conversion::byond_to_option_f32(data[5])?,
-            conversion::bounded_byond_to_option_f32(data[6], 0.0, f32::INFINITY)?,
-            conversion::bounded_byond_to_option_f32(data[7], 0.0, f32::INFINITY)?,
-            conversion::bounded_byond_to_option_f32(data[8], 0.0, f32::INFINITY)?,
-            conversion::bounded_byond_to_option_f32(data[9], 0.0, f32::INFINITY)?,
-            conversion::bounded_byond_to_option_f32(data[10], 0.0, f32::INFINITY)?,
-            conversion::bounded_byond_to_option_f32(data[11], 0.0, f32::INFINITY)?,
-            conversion::bounded_byond_to_option_f32(data[12], 0.0, f32::INFINITY)?,
-            conversion::bounded_byond_to_option_f32(data[13], 0.0, f32::INFINITY)?,
+            conversion::bounded_byond_to_option_f64(data[6], 0.0, f64::INFINITY)?,
+            conversion::bounded_byond_to_option_f64(data[7], 0.0, f64::INFINITY)?,
+            conversion::bounded_byond_to_option_f64(data[8], 0.0, f64::INFINITY)?,
+            conversion::bounded_byond_to_option_f64(data[9], 0.0, f64::INFINITY)?,
+            conversion::bounded_byond_to_option_f64(data[10], 0.0, f64::INFINITY)?,
+            conversion::bounded_byond_to_option_f64(data[11], 0.0, f64::INFINITY)?,
+            conversion::bounded_byond_to_option_f64(data[12], 0.0, f64::INFINITY)?,
+            conversion::bounded_byond_to_option_f64(data[13], 0.0, f64::INFINITY)?,
             None,
             Some(0.0),
             Some(0.0),
@@ -155,9 +155,9 @@ fn milla_load_turfs(
             x as i32 - 1,
             y as i32 - 1,
             z as i32 - 1,
-            conversion::bounded_byond_to_option_f32(data[14], 0.0, 1.0)?,
-            conversion::bounded_byond_to_option_f32(data[15], 0.0, 1.0)?,
-            conversion::bounded_byond_to_option_f32(data[16], 0.0, 1.0)?,
+            conversion::bounded_byond_to_option_f64(data[14], 0.0, 1.0)?,
+            conversion::bounded_byond_to_option_f64(data[15], 0.0, 1.0)?,
+            conversion::bounded_byond_to_option_f64(data[16], 0.0, 1.0)?,
             conversion::bounded_byond_to_option_f32(data[17], 0.0, 1.0)?,
         )?;
     }
@@ -198,19 +198,19 @@ fn milla_set_tile(
         conversion::byond_to_option_f32(airtight_west)?,
         conversion::byond_to_option_f32(atmos_mode)?,
         conversion::byond_to_option_f32(environment)?,
-        conversion::bounded_byond_to_option_f32(oxygen, 0.0, f32::INFINITY)?,
-        conversion::bounded_byond_to_option_f32(carbon_dioxide, 0.0, f32::INFINITY)?,
-        conversion::bounded_byond_to_option_f32(nitrogen, 0.0, f32::INFINITY)?,
-        conversion::bounded_byond_to_option_f32(toxins, 0.0, f32::INFINITY)?,
-        conversion::bounded_byond_to_option_f32(sleeping_agent, 0.0, f32::INFINITY)?,
-        conversion::bounded_byond_to_option_f32(agent_b, 0.0, f32::INFINITY)?,
-        conversion::bounded_byond_to_option_f32(hydrogen, 0.0, f32::INFINITY)?,
-        conversion::bounded_byond_to_option_f32(temperature, 0.0, f32::INFINITY)?,
+        conversion::bounded_byond_to_option_f64(oxygen, 0.0, f64::INFINITY)?,
+        conversion::bounded_byond_to_option_f64(carbon_dioxide, 0.0, f64::INFINITY)?,
+        conversion::bounded_byond_to_option_f64(nitrogen, 0.0, f64::INFINITY)?,
+        conversion::bounded_byond_to_option_f64(toxins, 0.0, f64::INFINITY)?,
+        conversion::bounded_byond_to_option_f64(sleeping_agent, 0.0, f64::INFINITY)?,
+        conversion::bounded_byond_to_option_f64(agent_b, 0.0, f64::INFINITY)?,
+        conversion::bounded_byond_to_option_f64(hydrogen, 0.0, f64::INFINITY)?,
+        conversion::bounded_byond_to_option_f64(temperature, 0.0, f64::INFINITY)?,
         None,
         // Temporarily disabled to better match the existing system.
-        //bounded_byond_to_option_f32(innate_heat_capacity, 0.0, f32::INFINITY)?,
+        //bounded_byond_to_option_f64(innate_heat_capacity, 0.0, f64::INFINITY)?,
         Some(0.0),
-        conversion::bounded_byond_to_option_f32(hotspot_temperature, 0.0, f32::INFINITY)?,
+        conversion::bounded_byond_to_option_f64(hotspot_temperature, 0.0, f64::INFINITY)?,
         conversion::bounded_byond_to_option_f32(hotspot_volume, 0.0, 1.0)?,
     )?;
     Ok(ByondValue::null())
@@ -266,17 +266,17 @@ pub(crate) fn internal_set_tile(
     airtight_west: Option<f32>,
     atmos_mode: Option<f32>,
     environment: Option<f32>,
-    oxygen: Option<f32>,
-    carbon_dioxide: Option<f32>,
-    nitrogen: Option<f32>,
-    toxins: Option<f32>,
-    sleeping_agent: Option<f32>,
-    agent_b: Option<f32>,
-    hydrogen: Option<f32>,
-    temperature: Option<f32>,
-    thermal_energy: Option<f32>,
-    innate_heat_capacity: Option<f32>,
-    hotspot_temperature: Option<f32>,
+    oxygen: Option<f64>,
+    carbon_dioxide: Option<f64>,
+    nitrogen: Option<f64>,
+    toxins: Option<f64>,
+    sleeping_agent: Option<f64>,
+    agent_b: Option<f64>,
+    hydrogen: Option<f64>,
+    temperature: Option<f64>,
+    thermal_energy: Option<f64>,
+    innate_heat_capacity: Option<f64>,
+    hotspot_temperature: Option<f64>,
     hotspot_volume: Option<f32>,
 ) -> Result<()> {
     let buffers = BUFFERS.get().ok_or(eyre!("BUFFERS not initialized."))?;
@@ -551,7 +551,7 @@ fn milla_create_hotspot(
     logging::setup_panic_handler();
     let (x, y, z) = byond_xyz(&turf)?.coordinates();
     let rust_temperature =
-        conversion::bounded_byond_to_option_f32(temperature, 0.0, f32::INFINITY)?
+        conversion::bounded_byond_to_option_f64(temperature, 0.0, f64::INFINITY)?
             .ok_or(eyre!("Hotspot temperature is required.."))?;
     let rust_volume = conversion::bounded_byond_to_option_f32(volume, 0.0, TILE_VOLUME)?
         .ok_or(eyre!("Hotspot volume is required.."))?;
@@ -616,7 +616,7 @@ fn milla_track_pressure_tiles(
 ) -> eyre::Result<ByondValue> {
     logging::setup_panic_handler();
     let (x, y, z) = byond_xyz(&turf)?.coordinates();
-    let radius = conversion::bounded_byond_to_option_f32(byond_radius, 0.0, MAP_SIZE as f32)?
+    let radius = conversion::bounded_byond_to_option_f64(byond_radius, 0.0, MAP_SIZE as f32)?
         .ok_or(eyre!("Invalid radius: {:#?}", byond_radius))? as i32;
 
     internal_track_pressure_tiles(x as i32 - 1, y as i32 - 1, z as i32 - 1, radius)?;

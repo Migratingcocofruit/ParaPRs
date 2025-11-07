@@ -10,9 +10,9 @@ use std::sync::{atomic::AtomicBool, atomic::Ordering::Relaxed, RwLock};
 /// Represents a collection of gases, with amounts in moles.
 #[derive(Debug)]
 pub(crate) struct GasSet {
-    pub(crate) values: [f32; GAS_COUNT],
-    moles_cache: AtomicF32,
-    heat_capacity_cache: AtomicF32,
+    pub(crate) values: [f64; GAS_COUNT],
+    moles_cache: AtomicF64,
+    heat_capacity_cache: AtomicF64,
     dirty: AtomicBool,
 }
 
@@ -26,52 +26,52 @@ impl GasSet {
             dirty: true.into(),
         }
     }
-    pub(crate) fn oxygen(&self) -> f32 {
+    pub(crate) fn oxygen(&self) -> f64 {
         self.values[GAS_OXYGEN]
     }
-    pub(crate) fn set_oxygen(&mut self, value: f32) {
+    pub(crate) fn set_oxygen(&mut self, value: f64) {
         self.values[GAS_OXYGEN] = value;
         self.dirty.store(true, Relaxed);
     }
-    pub(crate) fn carbon_dioxide(&self) -> f32 {
+    pub(crate) fn carbon_dioxide(&self) -> f64 {
         self.values[GAS_CARBON_DIOXIDE]
     }
-    pub(crate) fn set_carbon_dioxide(&mut self, value: f32) {
+    pub(crate) fn set_carbon_dioxide(&mut self, value: f64) {
         self.values[GAS_CARBON_DIOXIDE] = value;
         self.dirty.store(true, Relaxed);
     }
-    pub(crate) fn nitrogen(&self) -> f32 {
+    pub(crate) fn nitrogen(&self) -> f64 {
         self.values[GAS_NITROGEN]
     }
-    pub(crate) fn set_nitrogen(&mut self, value: f32) {
+    pub(crate) fn set_nitrogen(&mut self, value: f64) {
         self.values[GAS_NITROGEN] = value;
         self.dirty.store(true, Relaxed);
     }
-    pub(crate) fn toxins(&self) -> f32 {
+    pub(crate) fn toxins(&self) -> f64 {
         self.values[GAS_TOXINS]
     }
-    pub(crate) fn set_toxins(&mut self, value: f32) {
+    pub(crate) fn set_toxins(&mut self, value: f64) {
         self.values[GAS_TOXINS] = value;
         self.dirty.store(true, Relaxed);
     }
-    pub(crate) fn sleeping_agent(&self) -> f32 {
+    pub(crate) fn sleeping_agent(&self) -> f64 {
         self.values[GAS_SLEEPING_AGENT]
     }
-    pub(crate) fn set_sleeping_agent(&mut self, value: f32) {
+    pub(crate) fn set_sleeping_agent(&mut self, value: f64) {
         self.values[GAS_SLEEPING_AGENT] = value;
         self.dirty.store(true, Relaxed);
     }
-    pub(crate) fn agent_b(&self) -> f32 {
+    pub(crate) fn agent_b(&self) -> f64 {
         self.values[GAS_AGENT_B]
     }
-    pub(crate) fn set_agent_b(&mut self, value: f32) {
+    pub(crate) fn set_agent_b(&mut self, value: f64) {
         self.values[GAS_AGENT_B] = value;
         self.dirty.store(true, Relaxed);
     }
-    pub(crate) fn hydrogen(&self) -> f32 {
+    pub(crate) fn hydrogen(&self) -> f64 {
         self.values[GAS_HYDROGEN]
     }
-    pub(crate) fn set_hydrogen(&mut self, value: f32) {
+    pub(crate) fn set_hydrogen(&mut self, value: f64) {
         self.values[GAS_HYDROGEN] = value;
         self.dirty.store(true, Relaxed);
     }
@@ -91,7 +91,7 @@ impl GasSet {
     }
     /// The heat capacity of this set of gases, in joules per kelvin.
     #[allow(clippy::needless_range_loop)]
-    pub(crate) fn heat_capacity(&self) -> f32 {
+    pub(crate) fn heat_capacity(&self) -> f64 {
         if self.dirty.load(Relaxed) {
             self.recalculate();
         }
@@ -99,7 +99,7 @@ impl GasSet {
     }
     /// The total number of moles of gas.
     #[allow(clippy::needless_range_loop)]
-    pub(crate) fn moles(&self) -> f32 {
+    pub(crate) fn moles(&self) -> f64 {
         if self.dirty.load(Relaxed) {
             self.recalculate();
         }
@@ -221,24 +221,24 @@ pub(crate) struct Tile {
     /// The gases this tile holds.
     pub(crate) gases: GasSet,
     /// How much thermal energy this tile has, in joules.
-    pub(crate) thermal_energy: f32,
+    pub(crate) thermal_energy: f64,
     /// The general behavior of this tile.
     pub(crate) mode: AtmosMode,
     /// How well this tile conducts heat in each direction
     pub(crate) superconductivity: Superconductivity,
     /// How much heat capacity the tile itself has, in joules per kelvin.
-    pub(crate) innate_heat_capacity: f32,
+    pub(crate) innate_heat_capacity: f64,
     /// How hot the tile's hotspot is. A hotspot is a sub-tile reagion that's caught fire.
-    pub(crate) hotspot_temperature: f32,
+    pub(crate) hotspot_temperature: f64,
     /// How much of the tile the hotspot covers. 1.0 would be the entire tile.
     pub(crate) hotspot_volume: f32,
     /// How strongly the air in this tile is flowing towards +axis.
-    pub(crate) wind: [f32; AXES.len()],
+    pub(crate) wind: [f64; AXES.len()],
     /// Is there a wall in this direction?
     pub(crate) wall: [bool; AXES.len()],
-    pub(crate) gas_flow: [[[f32; 2]; GAS_COUNT]; AXES.len()],
+    pub(crate) gas_flow: [[[f64; 2]; GAS_COUNT]; AXES.len()],
     /// How much fuel was burnt this tick?
-    pub(crate) fuel_burnt: f32,
+    pub(crate) fuel_burnt: f64,
 }
 
 impl Tile {
@@ -259,11 +259,11 @@ impl Tile {
         }
     }
     /// The total heat capacity of this tile and its gases, in joules per kelvin.
-    pub(crate) fn heat_capacity(&self) -> f32 {
+    pub(crate) fn heat_capacity(&self) -> f64 {
         self.gases.heat_capacity() + self.innate_heat_capacity
     }
     /// The temperature of this tile, in kelvin.
-    pub(crate) fn temperature(&self) -> f32 {
+    pub(crate) fn temperature(&self) -> f64 {
         let heat_capacity = self.heat_capacity();
         if heat_capacity <= 0.0 {
             0.0
@@ -272,7 +272,7 @@ impl Tile {
         }
     }
     /// Calculates the pressure of a tile.
-    pub(crate) fn pressure(&self) -> f32 {
+    pub(crate) fn pressure(&self) -> f64 {
         if let AtmosMode::Space = self.mode {
             return 0.0;
         }
@@ -288,7 +288,7 @@ impl Tile {
             / TILE_VOLUME
     }
     /// Calculates the partial pressure of a gas in a tile.
-    pub(crate) fn partial_pressure(&self, gas: usize) -> f32 {
+    pub(crate) fn partial_pressure(&self, gas: usize) -> f64 {
         if self.gases.values[gas] <= 0.0 {
             return 0.0;
         }

@@ -204,9 +204,9 @@ pub(crate) fn flow_air_once_at_index(
         my_new_tile.gases.copy_from(&my_tile.gases);
         my_new_tile.thermal_energy = my_tile.thermal_energy;
     }
-    let mut outgoing_gas_mult: [f32; GAS_COUNT] = [0.0; GAS_COUNT];
+    let mut outgoing_gas_mult: [f64; GAS_COUNT] = [0.0; GAS_COUNT];
     let mut total_weighted_temperature = my_tile.temperature() * my_tile.heat_capacity();
-    let mut total_temperature_weights: f32 = my_tile.heat_capacity();
+    let mut total_temperature_weights: f64 = my_tile.heat_capacity();
     for (dir, (dx, dy)) in DIRECTIONS.iter().enumerate() {
         let neighbor_index = match ZLevel::maybe_get_index(x + dx, y + dy) {
             Some(value) => value,
@@ -266,7 +266,7 @@ pub(crate) fn flow_air_once_at_index(
 
     // And now we finish off Gauss-Seidel by dividing by the total outgoing weights, plus one
     // to represent this tile.
-    let mut max_gas_delta: f32 = 0.0;
+    let mut max_gas_delta: f64 = 0.0;
     let my_new_tile = next.get_tile_mut(my_index);
     for i in 0..GAS_COUNT {
         my_new_tile.gases.values[i] /= 1.0 + outgoing_gas_mult[i];
