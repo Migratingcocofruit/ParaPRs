@@ -182,7 +182,7 @@ pub(crate) const MINIMUM_NONZERO_MOLES: f32 = 0.1;
 pub(crate) const MAX_ITERATIONS: usize = 100;
 
 /// When we stop caring about gas changes and end iteration, in moles on a single tile.
-pub(crate) const GAS_CHANGE_SIGNIFICANCE: f32 = 0.01;
+pub(crate) const GAS_CHANGE_SIGNIFICANCE: f64 = 0.01;
 
 /// When we stop caring about gas changes and end iteration, roughly as a fraction of the gas.
 pub(crate) const GAS_CHANGE_SIGNIFICANCE_FRACTION: f32 = 0.001;

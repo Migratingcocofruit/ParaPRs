@@ -260,7 +260,7 @@ mod tests {
             self.0.superconductivity.west = value;
             self
         }
-        fn oxygen(mut self, value: f32) -> Self {
+        fn oxygen(mut self, value: f64) -> Self {
             self.0.gases.set_oxygen(value);
             self
         }
