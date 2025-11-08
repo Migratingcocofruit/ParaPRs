@@ -127,8 +127,8 @@ pub(crate) fn update_wind(prev: &ZLevel, next: &mut ZLevel) {
 
 pub(crate) struct AirflowOutcome {
     active_tiles: HashSet<usize>,
-    max_gas_delta: f32,
-    max_thermal_energy_delta: f32,
+    max_gas_delta: f64,
+    max_thermal_energy_delta: f64,
 }
 
 /// Let the air flow until it stabilizes for this tick or we run out of patience.
@@ -472,7 +472,7 @@ pub(crate) fn check_interesting(
         }
     }
     let my_next_tile = next.get_tile(my_index);
-    let mut wind_x: f32 = 0.0;
+    let mut wind_x: f64 = 0.0;
     if my_next_tile.wind[AXIS_X] > 0.0 {
         wind_x += my_next_tile.wind[AXIS_X] * WIND_SPEED * BYOND_WIND_MULTIPLIER;
     }
@@ -485,7 +485,7 @@ pub(crate) fn check_interesting(
         }
     }
     wind_x *= my_next_tile.pressure();
-    let mut wind_y: f32 = 0.0;
+    let mut wind_y: f64 = 0.0;
     if my_next_tile.wind[AXIS_Y] > 0.0 {
         wind_y += my_next_tile.wind[AXIS_Y] * BYOND_WIND_MULTIPLIER;
     }
@@ -520,11 +520,11 @@ pub(crate) fn check_interesting(
 
 /// Perform chemical reactions on the tile.
 pub(crate) fn react(my_next_tile: &mut Tile, hotspot_step: bool) {
-    let fraction: f32;
-    let hotspot_boost: f32;
-    let mut cached_heat_capacity: f32;
-    let mut cached_temperature: f32;
-    let mut thermal_energy: f32;
+    let fraction: f64;
+    let hotspot_boost: f64;
+    let mut cached_heat_capacity: f64;
+    let mut cached_temperature: f64;
+    let mut thermal_energy: f64;
     if hotspot_step {
         fraction = my_next_tile.hotspot_volume;
         hotspot_boost = PLASMA_BURN_HOTSPOT_RATIO_BOOST;
@@ -782,7 +782,7 @@ pub(crate) fn superconduct(my_tile: &mut Tile, their_tile: &mut Tile, is_east: b
     // This is the formula from LINDA. I have no idea if it's a good one, I just copied it.
     // Positive means heat flow from us to them.
     // Negative means heat flow from them to us.
-    let conduction = transfer_coefficient
+    let conduction = transfer_coefficient as f64
         * (my_tile.temperature() - their_tile.temperature())
         * my_heat_capacity
         * their_heat_capacity
@@ -867,7 +867,7 @@ pub(crate) fn normalise_hotspot(tile: &mut Tile) {
 // For positive values, the energy will first be used to reach PLASMA_BURN_OPTIMAL_TEMP, then
 // to expand volume up to 1 (filled), and finally dumped into the tile's thermal energy.
 // For negative values, only the hotspot's volume is affected.
-pub(crate) fn adjust_hotspot(tile: &mut Tile, thermal_energy_delta: f32) {
+pub(crate) fn adjust_hotspot(tile: &mut Tile, thermal_energy_delta: f64) {
     if thermal_energy_delta < 0.0 {
         if tile.hotspot_volume <= 0.0 {
             // No hotspot to sap heat from.

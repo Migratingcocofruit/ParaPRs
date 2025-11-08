@@ -155,9 +155,9 @@ fn milla_load_turfs(
             x as i32 - 1,
             y as i32 - 1,
             z as i32 - 1,
-            conversion::bounded_byond_to_option_f64(data[14], 0.0, 1.0)?,
-            conversion::bounded_byond_to_option_f64(data[15], 0.0, 1.0)?,
-            conversion::bounded_byond_to_option_f64(data[16], 0.0, 1.0)?,
+            conversion::bounded_byond_to_option_f32(data[14], 0.0, 1.0)?,
+            conversion::bounded_byond_to_option_f32(data[15], 0.0, 1.0)?,
+            conversion::bounded_byond_to_option_f32(data[16], 0.0, 1.0)?,
             conversion::bounded_byond_to_option_f32(data[17], 0.0, 1.0)?,
         )?;
     }
@@ -211,7 +211,7 @@ fn milla_set_tile(
         //bounded_byond_to_option_f64(innate_heat_capacity, 0.0, f64::INFINITY)?,
         Some(0.0),
         conversion::bounded_byond_to_option_f64(hotspot_temperature, 0.0, f64::INFINITY)?,
-        conversion::bounded_byond_to_option_f32(hotspot_volume, 0.0, 1.0)?,
+        conversion::bounded_byond_to_option_f64(hotspot_volume, 0.0, 1.0)?,
     )?;
     Ok(ByondValue::null())
 }
@@ -277,7 +277,7 @@ pub(crate) fn internal_set_tile(
     thermal_energy: Option<f64>,
     innate_heat_capacity: Option<f64>,
     hotspot_temperature: Option<f64>,
-    hotspot_volume: Option<f32>,
+    hotspot_volume: Option<f64>,
 ) -> Result<()> {
     let buffers = BUFFERS.get().ok_or(eyre!("BUFFERS not initialized."))?;
     let active = buffers.get_active().read().unwrap();
@@ -553,7 +553,7 @@ fn milla_create_hotspot(
     let rust_temperature =
         conversion::bounded_byond_to_option_f64(temperature, 0.0, f64::INFINITY)?
             .ok_or(eyre!("Hotspot temperature is required.."))?;
-    let rust_volume = conversion::bounded_byond_to_option_f32(volume, 0.0, TILE_VOLUME)?
+    let rust_volume = conversion::bounded_byond_to_option_f64(volume, 0.0, TILE_VOLUME)?
         .ok_or(eyre!("Hotspot volume is required.."))?;
 
     internal_create_hotspot(
@@ -571,8 +571,8 @@ pub(crate) fn internal_create_hotspot(
     x: i32,
     y: i32,
     z: i32,
-    temperature: f32,
-    volume: f32,
+    temperature: f64,
+    volume: f64,
 ) -> Result<()> {
     let buffers = BUFFERS.get().ok_or(eyre!("BUFFERS not initialized."))?;
     let active = buffers.get_active().read().unwrap();
@@ -600,7 +600,8 @@ pub(crate) fn internal_create_hotspot(
         return Ok(());
     }
 
-    let excess_thermal_energy = (temperature - tile.temperature()) * tile.heat_capacity() * volume;
+    let excess_thermal_energy =
+        (temperature - tile.temperature()) * tile.heat_capacity() * volume as f64;
     if excess_thermal_energy > 0.0 {
         simulate::adjust_hotspot(tile, excess_thermal_energy);
     }
@@ -616,7 +617,7 @@ fn milla_track_pressure_tiles(
 ) -> eyre::Result<ByondValue> {
     logging::setup_panic_handler();
     let (x, y, z) = byond_xyz(&turf)?.coordinates();
-    let radius = conversion::bounded_byond_to_option_f64(byond_radius, 0.0, MAP_SIZE as f32)?
+    let radius = conversion::bounded_byond_to_option_f64(byond_radius, 0.0, MAP_SIZE as f64)?
         .ok_or(eyre!("Invalid radius: {:#?}", byond_radius))? as i32;
 
     internal_track_pressure_tiles(x as i32 - 1, y as i32 - 1, z as i32 - 1, radius)?;
@@ -653,13 +654,13 @@ fn milla_get_tracked_pressure_tiles() -> eyre::Result<ByondValue> {
     logging::setup_panic_handler();
     let tracked_pressures = internal_get_tracked_pressure_tiles()?
         .iter()
-        .map(|v: &f32| ByondValue::from(*v))
+        .map(|v: &f64| ByondValue::from(*v))
         .collect::<Vec<ByondValue>>();
     Ok(tracked_pressures.as_slice().try_into()?)
 }
 
 /// Rust version of getting the tracked pressure tiles.
-fn internal_get_tracked_pressure_tiles() -> eyre::Result<Vec<f32>> {
+fn internal_get_tracked_pressure_tiles() -> eyre::Result<Vec<f64>> {
     let buffers = BUFFERS.get().ok_or(eyre!("BUFFERS not initialized."))?;
     let inactive = buffers.get_inactive().read().unwrap();
     let mut tracked_pressure_tiles = TRACKED_PRESSURE_TILES.lock().unwrap();
@@ -678,14 +679,14 @@ fn internal_get_tracked_pressure_tiles() -> eyre::Result<Vec<f32>> {
     // This is a bit gross, but the easiest way to return the coordinates and data is to cast the
     // coordinates to f32. It feels bad in Rust, but everything is an f32 in BYOND, so it's more or
     // less a no-op.
-    let mut tracked_pressures: Vec<f32> = Vec::new();
+    let mut tracked_pressures: Vec<f64> = Vec::new();
     for z in 0..tiles_by_zlevel.len() {
         let z_level = inactive.0[z as usize].read().unwrap();
         for (x, y) in &tiles_by_zlevel[z] {
             if let Some(index) = ZLevel::maybe_get_index(*x, *y) {
-                tracked_pressures.push(*x as f32 + 1.0);
-                tracked_pressures.push(*y as f32 + 1.0);
-                tracked_pressures.push(z as f32 + 1.0);
+                tracked_pressures.push(*x as f64 + 1.0);
+                tracked_pressures.push(*y as f64 + 1.0);
+                tracked_pressures.push(z as f64 + 1.0);
                 tracked_pressures.push(z_level.get_tile(index).pressure());
             }
         }

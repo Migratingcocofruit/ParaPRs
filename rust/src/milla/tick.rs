@@ -264,39 +264,39 @@ mod tests {
             self.0.gases.set_oxygen(value);
             self
         }
-        fn carbon_dioxide(mut self, value: f32) -> Self {
+        fn carbon_dioxide(mut self, value: f64) -> Self {
             self.0.gases.set_carbon_dioxide(value);
             self
         }
-        fn nitrogen(mut self, value: f32) -> Self {
+        fn nitrogen(mut self, value: f64) -> Self {
             self.0.gases.set_nitrogen(value);
             self
         }
-        fn toxins(mut self, value: f32) -> Self {
+        fn toxins(mut self, value: f64) -> Self {
             self.0.gases.set_toxins(value);
             self
         }
-        fn sleeping_agent(mut self, value: f32) -> Self {
+        fn sleeping_agent(mut self, value: f64) -> Self {
             self.0.gases.set_sleeping_agent(value);
             self
         }
-        fn agent_b(mut self, value: f32) -> Self {
+        fn agent_b(mut self, value: f64) -> Self {
             self.0.gases.set_agent_b(value);
             self
         }
-        fn hydrogen(mut self, value: f32) -> Self {
+        fn hydrogen(mut self, value: f64) -> Self {
             self.0.gases.set_hydrogen(value);
             self
         }
-        fn thermal_energy(mut self, value: f32) -> Self {
+        fn thermal_energy(mut self, value: f64) -> Self {
             self.0.thermal_energy = value;
             self
         }
-        fn innate_heat_capacity(mut self, value: f32) -> Self {
+        fn innate_heat_capacity(mut self, value: f64) -> Self {
             self.0.innate_heat_capacity = value;
             self
         }
-        fn temperature(mut self, value: f32) -> Self {
+        fn temperature(mut self, value: f64) -> Self {
             self.0.thermal_energy = value * self.0.heat_capacity();
             self
         }
@@ -306,15 +306,15 @@ mod tests {
     }
 
     struct TileChecker {
-        oxygen_: Option<f32>,
-        carbon_dioxide_: Option<f32>,
-        nitrogen_: Option<f32>,
-        toxins_: Option<f32>,
-        sleeping_agent_: Option<f32>,
-        agent_b_: Option<f32>,
-        hydrogen: Option<f32>,
-        thermal_energy_: Option<f32>,
-        temperature_: Option<f32>,
+        oxygen_: Option<f64>,
+        carbon_dioxide_: Option<f64>,
+        nitrogen_: Option<f64>,
+        toxins_: Option<f64>,
+        sleeping_agent_: Option<f64>,
+        agent_b_: Option<f64>,
+        hydrogen_: Option<f64>,
+        thermal_energy_: Option<f64>,
+        temperature_: Option<f64>,
     }
 
     impl TileChecker {
@@ -326,7 +326,7 @@ mod tests {
                 toxins_: None,
                 sleeping_agent_: None,
                 agent_b_: None,
-                hydrogen: None,
+                hydrogen_: None,
                 thermal_energy_: None,
                 temperature_: None,
             }
@@ -423,39 +423,39 @@ mod tests {
                 );
             }
         }
-        fn oxygen(mut self, value: f32) -> Self {
+        fn oxygen(mut self, value: f64) -> Self {
             self.oxygen_ = Some(value);
             self
         }
-        fn carbon_dioxide(mut self, value: f32) -> Self {
+        fn carbon_dioxide(mut self, value: f64) -> Self {
             self.carbon_dioxide_ = Some(value);
             self
         }
-        fn nitrogen(mut self, value: f32) -> Self {
+        fn nitrogen(mut self, value: f64) -> Self {
             self.nitrogen_ = Some(value);
             self
         }
-        fn toxins(mut self, value: f32) -> Self {
+        fn toxins(mut self, value: f64) -> Self {
             self.toxins_ = Some(value);
             self
         }
-        fn sleeping_agent(mut self, value: f32) -> Self {
+        fn sleeping_agent(mut self, value: f64) -> Self {
             self.sleeping_agent_ = Some(value);
             self
         }
-        fn agent_b(mut self, value: f32) -> Self {
+        fn agent_b(mut self, value: f64) -> Self {
             self.agent_b_ = Some(value);
             self
         }
-        fn hydrogen(mut self, value: f32) -> Self {
+        fn hydrogen(mut self, value: f64) -> Self {
             self.hydrogen_ = Some(value);
             self
         }
-        fn thermal_energy(mut self, value: f32) -> Self {
+        fn thermal_energy(mut self, value: f64) -> Self {
             self.thermal_energy_ = Some(value);
             self
         }
-        fn temperature(mut self, value: f32) -> Self {
+        fn temperature(mut self, value: f64) -> Self {
             self.temperature_ = Some(value);
             self
         }

@@ -12,6 +12,16 @@ pub(crate) fn byond_to_option_f32(value: ByondValue) -> Result<Option<f32>, Erro
     }
 }
 
+/// Turns a BYOND number into an Option<f32>.
+/// The option will be None if the number was null or NaN.
+pub(crate) fn byond_to_option_f64(value: ByondValue) -> Result<Option<f64>, Error> {
+    if value.is_null() {
+        Ok(None)
+    } else {
+        Ok(f64_to_option_f64(value.get_number()? as f64))
+    }
+}
+
 /// Turns a BYOND number into an Option<f32>, clamping it to the specified bounds.
 // The option will be None if the number was null or NaN.
 pub(crate) fn bounded_byond_to_option_f32(
@@ -48,7 +58,7 @@ pub(crate) fn bounded_byond_to_option_f64(
         Ok(None)
     } else {
         Ok(f64_to_option_f64(
-            value.get_number()?.max(min_value).min(max_value) as f64,
+            (value.get_number()? as f64).max(min_value).min(max_value) as f64,
         ))
     }
 }
