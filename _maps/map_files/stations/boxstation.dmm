@@ -43438,7 +43438,7 @@
 /turf/simulated/floor/plasteel/dark,
 /area/station/aisat/hall)
 "dmO" = (
-/obj/machinery/power/compressor{
+/obj/machinery/atmospherics/compressor{
 	comp_id = "incineratorturbine";
 	dir = 1
 	},

@@ -392,7 +392,7 @@ to destroy them and players will be able to make replacements.
 /obj/item/circuitboard/power_compressor
 	board_name = "Power Compressor"
 	icon_state = "engineering"
-	build_path = /obj/machinery/power/compressor
+	build_path = /obj/machinery/atmospherics/compressor
 	board_type = "machine"
 	origin_tech = "programming=4;powerstorage=4;engineering=4"
 	req_components = list(

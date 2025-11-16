@@ -10100,7 +10100,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
-/obj/machinery/power/compressor{
+/obj/machinery/atmospherics/compressor{
 	comp_id = "incineratorturbine";
 	dir = 4;
 	luminosity = 2

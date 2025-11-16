@@ -23684,7 +23684,7 @@
 	},
 /area/station/service/chapel)
 "cwB" = (
-/obj/machinery/power/compressor{
+/obj/machinery/atmospherics/compressor{
 	comp_id = "incineratorturbine";
 	dir = 1
 	},

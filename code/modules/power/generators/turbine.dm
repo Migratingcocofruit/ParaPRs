@@ -21,7 +21,7 @@
 //   |      |        V - Suction vent (Like the ones in atmos)
 
 /// Multiplies the friction of the compressor
-#define COMPFRICTION 440
+#define COMPFRICTION 110
 /// Compressor's moment of inertia in kg * m^2
 #define COMP_MOMENT_OF_INERTIA 300
 /// Convert RPM to radians per second(SI angular velocity units)
@@ -31,11 +31,11 @@
 /// Changes the scaling of thermal efficiency with temperature. Lower value means faster scaling
 #define THERMAL_EFF_TEMP_CURVE 7500
 /// Changes the scaling of compression ratio with RPM. Lower value means faster scaling
-#define COMPRESSION_RPM_CURVE 12000
+#define COMPRESSION_RPM_CURVE 6000
 /// The portion of the kinetic energy converted to electrical
 #define KINETIC_TO_ELECTRIC 0.005
 /// The maximum compression ratio of the turbine
-#define COMPRESSION_RATIO_MAX 50
+#define COMPRESSION_RATIO_MAX 12.5
 /// Scales the effect of compresion ratio on thermal efficiency
 #define THERMAL_EFF_COMPRESSION_CURVE 0.9
 /// The base value we add values dervied from componenet ratings to for thermal efficiency scaling. higher value means lesser effect of parts
@@ -69,7 +69,7 @@
 #define ENERGY_PORTION_CURVE 10000
 #define ENERGY_PORTION_CURVE_POWER 1.2
 
-/obj/machinery/power/compressor
+/obj/machinery/atmospherics/compressor
 	name = "gas turbine compressor"
 	desc = "The compressor stage of a gas turbine generator. A data panel for linking with a to a computer can be accessed with a screwdriver."
 	icon = 'icons/obj/pipes.dmi'
@@ -123,7 +123,7 @@
 	density = TRUE
 	resistance_flags = FIRE_PROOF
 	var/opened = FALSE
-	var/obj/machinery/power/compressor/compressor
+	var/obj/machinery/atmospherics/compressor/compressor
 	var/turf/simulated/outturf
 	var/lastgen
 	/// If the turbine is outputing enough to visibly affect its sprite
@@ -136,12 +136,12 @@
 	icon_screen = "turbinecomp"
 	icon_keyboard = "tech_key"
 	circuit = /obj/item/circuitboard/turbine_computer
-	var/obj/machinery/power/compressor/compressor
+	var/obj/machinery/atmospherics/compressor/compressor
 	var/id = 0
 
 // the inlet stage of the gas turbine electricity generator
 
-/obj/machinery/power/compressor/Initialize(mapload)
+/obj/machinery/atmospherics/compressor/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/power_compressor(null)
@@ -171,13 +171,13 @@
 	RegisterSignal(inturf, COMSIG_ATOM_ENTERED, PROC_REF(enter_inlet_turf))
 	RegisterSignal(inturf, COMSIG_ATOM_EXIT, PROC_REF(leave_inlet_turf))
 
-/obj/machinery/power/compressor/proc/check_broken()
+/obj/machinery/atmospherics/compressor/proc/check_broken()
 	if(turbine && bearing_damage < BEARING_DAMAGE_MAX)
 		stat &= ~BROKEN
 	else
 		stat |= BROKEN
 
-/obj/machinery/power/compressor/locate_machinery()
+/obj/machinery/atmospherics/compressor/locate_machinery()
 	if(turbine)
 		return
 	turbine = locate() in get_step(src, get_dir(inturf, src))
@@ -185,13 +185,13 @@
 		turbine.locate_machinery()
 	check_broken()
 
-/obj/machinery/power/compressor/RefreshParts()
+/obj/machinery/atmospherics/compressor/RefreshParts()
 	var/E = 0
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		E += M.rating
 	efficiency = E / 6
 
-/obj/machinery/power/compressor/item_interaction(mob/living/user, obj/item/used, list/modifiers)
+/obj/machinery/atmospherics/compressor/item_interaction(mob/living/user, obj/item/used, list/modifiers)
 	if(default_change_direction_wrench(user, used))
 		turbine = null
 		inturf = get_step(src, dir)
@@ -206,15 +206,15 @@
 
 	return ..()
 
-/obj/machinery/power/compressor/crowbar_act(mob/user, obj/item/I)
+/obj/machinery/atmospherics/compressor/crowbar_act(mob/user, obj/item/I)
 	if(default_deconstruction_crowbar(user, I))
 		return TRUE
 
-/obj/machinery/power/compressor/screwdriver_act(mob/user, obj/item/I)
+/obj/machinery/atmospherics/compressor/screwdriver_act(mob/user, obj/item/I)
 	if(default_deconstruction_screwdriver(user, initial(icon_state), initial(icon_state), I))
 		return TRUE
 
-/obj/machinery/power/compressor/welder_act(mob/user, obj/item/I)
+/obj/machinery/atmospherics/compressor/welder_act(mob/user, obj/item/I)
 	if(panel_open)
 		if(!I.use_tool(src, user, 5 SECONDS, volume = I.tool_volume))
 			return FALSE
@@ -226,7 +226,7 @@
 		to_chat(user,"<span class='warning'>You need to open the panel first</span>")
 		return TRUE
 
-/obj/machinery/power/compressor/multitool_act(mob/living/user, obj/item/I)
+/obj/machinery/atmospherics/compressor/multitool_act(mob/living/user, obj/item/I)
 	if(!I.use_tool(src, user, 0, volume = I.tool_volume))
 		return
 	if(!I.multitool_check_buffer(user))
@@ -236,14 +236,14 @@
 		M.set_multitool_buffer(user, src)
 
 
-/obj/machinery/power/compressor/CanAtmosPass(direction)
+/obj/machinery/atmospherics/compressor/CanAtmosPass(direction)
 	return !density
 
 /// Prevents heat leakage through the compressor
-/obj/machinery/power/compressor/get_superconductivity(direction)
+/obj/machinery/atmospherics/compressor/get_superconductivity(direction)
 	return ZERO_HEAT_TRANSFER_COEFFICIENT
 
-/obj/machinery/power/compressor/proc/catastrophic_failure()
+/obj/machinery/atmospherics/compressor/proc/catastrophic_failure()
 	var/rpm_delta = rpm - FAIILRE_RPM_EXPLOSION_THRESHOLD
 	if(rpm_delta > 0)
 		explosion(src, rpm_delta / 5000, rpm_delta / 3000, rpm_delta / 1000)
@@ -255,11 +255,11 @@
 		check_broken()
 		starter = FALSE
 
-/obj/machinery/power/compressor/proc/time_until_overheat_done()
+/obj/machinery/atmospherics/compressor/proc/time_until_overheat_done()
 	return max(a_thing + OVERHEAT_TIME - world.time, 0)
 
 
-/obj/machinery/power/compressor/proc/enter_inlet_turf(turf/source, atom/movable/entered)
+/obj/machinery/atmospherics/compressor/proc/enter_inlet_turf(turf/source, atom/movable/entered)
 	SIGNAL_HANDLER // COMSIG_ATOM_ENTERED
 
 	var/static/list/compressor_ignored_things = typecacheof(list(
@@ -274,7 +274,7 @@
 	if(rpm > 1000)
 		suck_in()
 
-/obj/machinery/power/compressor/proc/leave_inlet_turf(turf/source, atom/movable/entered)
+/obj/machinery/atmospherics/compressor/proc/leave_inlet_turf(turf/source, atom/movable/entered)
 	SIGNAL_HANDLER  //COMSIG_ATOM_EXIT
 
 	var/list/things = list(entered)
@@ -284,7 +284,7 @@
 		to_suck_in -= thing
 		things += thing.contents
 
-/obj/machinery/power/compressor/proc/suck_in()
+/obj/machinery/atmospherics/compressor/proc/suck_in()
 	var/static/list/compressor_ignored_things = typecacheof(list(
 	/mob/dead,
 	/mob/camera,
@@ -314,16 +314,16 @@
 	if(bearing_damage > BEARING_DAMAGE_MAX)
 		catastrophic_failure()
 
-/obj/machinery/power/compressor/process()
+/obj/machinery/atmospherics/compressor/process_atmos()
 	var/datum/milla_safe/compressor_process/milla = new()
 	milla.invoke_async(src)
 
 /datum/milla_safe/compressor_process
 
-/datum/milla_safe/compressor_process/on_run(obj/machinery/power/compressor/compressor)
+/datum/milla_safe/compressor_process/on_run(obj/machinery/atmospherics/compressor/compressor)
 	// The things at the start should happen regardless of whether the compressor works.
 	// Lose heat to conduction.
-	compressor.temperature = compressor.temperature * 0.997
+	compressor.temperature = compressor.temperature * 0.9992
 	var/friction_energy_loss = 0
 	// Rotational kinetic energy turned to heat by friction
 	if(compressor.rpm)
@@ -401,7 +401,7 @@
 	var/datum/gas_mixture/removed = environment.remove(transfer_moles)
 	compressor.gas_contained.merge(removed)
 	// Record how much gas we took in for the UI
-	compressor.gas_throughput = compressor.gas_contained.total_moles()
+	compressor.gas_throughput = compressor.gas_contained.total_moles() * 2
 
 	var/gas_heat_capacity = compressor.gas_contained.heat_capacity()
 	var/total_heat_energy = compressor.gas_contained.thermal_energy() + (compressor.temperature * compressor.heat_capacity)
@@ -483,7 +483,7 @@
 		compressor.rpm_threshold = new_rpm_threshold
 		compressor.update_icon(UPDATE_OVERLAYS)
 
-/obj/machinery/power/compressor/update_overlays()
+/obj/machinery/atmospherics/compressor/update_overlays()
 	. = ..()
 	if(!rpm_threshold)
 		return
