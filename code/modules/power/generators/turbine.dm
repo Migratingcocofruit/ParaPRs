@@ -409,11 +409,11 @@
 	var/datum/gas_mixture/removed = environment.remove(transfer_moles)
 	compressor.gas_contained.merge(removed)
 
-	var/gas_sum = 0
-	if(length(compressor.gas_amount_samples) >= 5)
-		compressor.gas_amount_samples -= compressor.gas_amount_samples[1]
 	compressor.gas_amount_samples += compressor.gas_contained.total_moles()
+	if(length(compressor.gas_amount_samples) > 5)
+		compressor.gas_amount_samples -= compressor.gas_amount_samples[1]
 
+	var/gas_sum = 0
 	for(var/sample in compressor.gas_amount_samples)
 		gas_sum += sample
 	// Record how much gas we took in for the UI. We divided by 2 due to the turbine ticking over once every two seconds
