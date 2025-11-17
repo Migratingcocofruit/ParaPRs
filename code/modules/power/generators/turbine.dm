@@ -21,7 +21,7 @@
 //   |      |        V - Suction vent (Like the ones in atmos)
 
 /// Multiplies the friction of the compressor
-#define COMPFRICTION 440
+#define COMPFRICTION 44
 /// Compressor's moment of inertia in kg * m^2
 #define COMP_MOMENT_OF_INERTIA 300
 /// Convert RPM to radians per second(SI angular velocity units)
@@ -35,7 +35,7 @@
 /// The portion of the kinetic energy converted to electrical
 #define KINETIC_TO_ELECTRIC 0.005
 /// The maximum compression ratio of the turbine
-#define COMPRESSION_RATIO_MAX 50
+#define COMPRESSION_RATIO_MAX 12
 /// Scales the effect of compresion ratio on thermal efficiency
 #define THERMAL_EFF_COMPRESSION_CURVE 0.9
 /// The base value we add values dervied from componenet ratings to for thermal efficiency scaling. higher value means lesser effect of parts
@@ -76,6 +76,7 @@
 	icon_state = "compressor"
 	density = TRUE
 	resistance_flags = FIRE_PROOF
+	speed_process = TRUE
 	var/obj/machinery/power/turbine/turbine
 	var/datum/gas_mixture/gas_contained
 	var/turf/simulated/inturf
@@ -323,7 +324,7 @@
 /datum/milla_safe/compressor_process/on_run(obj/machinery/power/compressor/compressor)
 	// The things at the start should happen regardless of whether the compressor works.
 	// Lose heat to conduction.
-	compressor.temperature = compressor.temperature * 0.997
+	compressor.temperature = compressor.temperature * 0.9997
 	var/friction_energy_loss = 0
 	// Rotational kinetic energy turned to heat by friction
 	if(compressor.rpm)
@@ -406,7 +407,7 @@
 	var/datum/gas_mixture/removed = environment.remove(transfer_moles)
 	compressor.gas_contained.merge(removed)
 	// Record how much gas we took in for the UI. We divided by 2 due to the turbine ticking over once every two seconds
-	compressor.gas_throughput = compressor.gas_contained.total_moles() / 2
+	compressor.gas_throughput = compressor.gas_contained.total_moles() * 5
 
 	var/gas_heat_capacity = compressor.gas_contained.heat_capacity()
 	var/total_heat_energy = compressor.gas_contained.thermal_energy() + (compressor.temperature * compressor.heat_capacity)
