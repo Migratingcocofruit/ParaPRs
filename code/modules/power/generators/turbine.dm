@@ -111,8 +111,10 @@
 	var/thermal_efficiency = 0
 	/// By how much the intake gas is getting compressed
 	var/compression_ratio = 1
-	/// Intaked gas in mol/tick. tick is 2 seconds
+	/// Averaged gas throughput over the last second
 	var/gas_throughput = 0
+	/// Samples of the amount of gas in the compressor from the last 5 ticks, or one second
+	var/gas_amount_samples = list()
 	/// List of things that would get sucked into the compressor if it spins fast enough
 	var/list/to_suck_in = list()
 
@@ -406,8 +408,16 @@
 	var/transfer_moles = environment.total_moles() * input_fraction
 	var/datum/gas_mixture/removed = environment.remove(transfer_moles)
 	compressor.gas_contained.merge(removed)
+
+	var/gas_sum = 0
+	if(length(compressor.gas_amount_samples) >= 5)
+		compressor.gas_amount_samples += compressor.gas_amount_samples[1]
+	compressor.gas_amount_samples += compressor.gas_contained.total_moles()
+
+	for(var/sample in compressor.gas_amount_samples)
+		gas_sum += sample
 	// Record how much gas we took in for the UI. We divided by 2 due to the turbine ticking over once every two seconds
-	compressor.gas_throughput = compressor.gas_contained.total_moles() * 5
+	compressor.gas_throughput = gas_sum
 
 	var/gas_heat_capacity = compressor.gas_contained.heat_capacity()
 	var/total_heat_energy = compressor.gas_contained.thermal_energy() + (compressor.temperature * compressor.heat_capacity)
