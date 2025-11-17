@@ -411,7 +411,7 @@
 
 	var/gas_sum = 0
 	if(length(compressor.gas_amount_samples) >= 5)
-		compressor.gas_amount_samples += compressor.gas_amount_samples[1]
+		compressor.gas_amount_samples -= compressor.gas_amount_samples[1]
 	compressor.gas_amount_samples += compressor.gas_contained.total_moles()
 
 	for(var/sample in compressor.gas_amount_samples)
